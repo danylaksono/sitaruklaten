@@ -1,0 +1,27 @@
+mat-dialog-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+table {
+    width: 100%;
+  }
+
+table thead {
+    display:none !important;
+  }
+
+  
+.dialogTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}

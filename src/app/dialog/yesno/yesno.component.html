@@ -1,0 +1,9 @@
+<p mat-dialog-title color="primary" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>{{modalTitle}}</p>
+
+<mat-dialog-content>
+    <p> {{modalArticle}} </p>
+ </mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end">
+  <button mat-button  (click)="closeDialog()" >Tidak</button>
+  <button mat-button [autofocus]="true" [mat-dialog-close]='true' color="primary">Ya</button>
+</mat-dialog-actions>
