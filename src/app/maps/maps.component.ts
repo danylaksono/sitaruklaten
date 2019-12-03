@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, NgModule, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 
 import OlMap from 'ol/Map';
 import OlXYZ from 'ol/source/XYZ';
@@ -15,7 +15,7 @@ import { fromLonLat } from 'ol/proj';
 import OlGeoJSON from 'ol/format/GeoJSON';
 import { Fill, Circle, Stroke, Style } from 'ol/style';
 import OlVectorSource from 'ol/source/Vector';
-
+import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
 
 
 //components & services
@@ -32,6 +32,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './../service/auth.service';
 import { Observable } from "rxjs";
 
+
+
+@NgModule({
+  imports: [
+    SmoothScrollModule
+  ]
+})
 
 @Component({
   selector: 'app-maps',
@@ -50,8 +57,8 @@ export class MapsComponent implements OnInit, AfterViewInit {
   VectorLayer: OlVectorLayer;
   sLayer: OlVectorLayer;
 
-  linkServer: string = 'http://geoportal.ppids.ft.ugm.ac.id/geoserver/';
-  linkWMS: string = this.linkServer + 'klaten/wms';
+  linkServer: string = 'http://103.108.187.217/geoserver/';
+  linkWMS: string = this.linkServer + 'sitaru/wms';
 
 
   //isLoggedIn: Boolean = false;
@@ -76,6 +83,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     private daftarkegiatan: DaftarkegiatanService,
     private dialog: MatDialog,
     private hightlight: HighlightfeatureService,
+    private smoothScroll: SmoothScrollModule,
     private warning: WarningSnackbarService,
     private cookie: CookieService,
     private auth: AuthService
@@ -103,7 +111,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     this.wmsSource = new TileWMS({
       url: this.linkWMS,
       params: {
-        'LAYERS': '	klaten:pola_ruang_klaten_new',
+        'LAYERS': '	sitaru:pola_ruang',
         //'FORMAT': 'image/png8',
         'TILED': true,
         'VERSION': '1.1.1',
@@ -257,7 +265,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
         evt.coordinate, viewResolution, this.view.getProjection(),//'EPSG:3857',
         {
           'INFO_FORMAT': 'application/json',
-          'QUERY_LAYERS': 'klaten:pola_ruang_klaten_new',
+          'QUERY_LAYERS': 'sitaru:pola_ruang',
           'FEATURE_COUNT': 1
         });
 

@@ -10,6 +10,7 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { NgScrollbarModule, NG_SCROLLBAR_OPTIONS } from 'ngx-scrollbar';
 
 
 import { CookieService } from 'ngx-cookie-service';
@@ -23,8 +24,6 @@ import { MatDialogModule } from "@angular/material";
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { CekizinComponent } from './dialog/cekizin/cekizin.component';
-
-
 import { LoginComponent } from './Auth/login/login.component';
 import { SignUpComponent } from './Auth/sign-up/sign-up.component';
 import { YesnoComponent } from './dialog/yesno/yesno.component';
@@ -77,12 +76,16 @@ import { HalamanCetakComponent } from './dialog/halaman-cetak/halaman-cetak.comp
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgScrollbarModule
+
     
     
 
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

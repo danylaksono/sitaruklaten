@@ -37,7 +37,7 @@ export class BasemaplayerService {
         //@ts-ignore
         title: 'ESRI World Imagery',
         baseLayer:true,
-        visible: false,
+        visible: true,
         preload: Infinity,
         source: new XYZ({
           //@ts-ignore
@@ -49,7 +49,7 @@ export class BasemaplayerService {
         //@ts-ignore
         title: 'Citra Klaten',
         baseLayer:true,
-        visible: true,
+        visible: false,
         preload: Infinity,
         
         source: new XYZ({
