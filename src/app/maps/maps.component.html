@@ -8,13 +8,13 @@
     <ul role="tablist">
       <li><a matTooltip="Layer Peta" href="#home" role="tab"><i class="fa fa-map"></i></a></li>
       <li><a matTooltip="Legenda" href="#profile" role="tab"><i class="fa fa-image"></i></a></li>
-      <li><a (click)="openDialogCari()" matTooltip="Pencarian" role="tab"><i class="fa fa-search"></i></a></li>
+      <li><a (click)="openDialogCari()" matTooltip="Cari Koordinat" role="tab"><i class="fa fa-flag"></i></a></li>
     </ul>
 
     <ul role="tablist">
         <li><a matTooltip="Hapus seleksi" (click)="clearSelected()" target="_blank"><i class="fa fa-eraser"></i></a></li>
-        <li><a (click)="activateInfoMode()" matTooltip="Mode Info" role="tab"><i class="fa fa-info-circle"></i></a></li>
-        <li><a (click)="activateEditMode()"  matTooltip="Mode Edit" role="tab"><i class="fa fa-pencil"></i></a></li>
+        <li><a [style.background-color] = "editMode ? 'transparent' : 'lightblue'" (click)="activateInfoMode()" matTooltip="Mode Info" role="tab"><i class="fa fa-info-circle"></i></a></li>
+        <li><a [style.background-color] = "editMode ? 'lightblue' : 'transparent'" (click)="activateEditMode()"  matTooltip="Mode Edit" role="tab"><i class="fa fa-pencil"></i></a></li>
         
     </ul>
   </div>

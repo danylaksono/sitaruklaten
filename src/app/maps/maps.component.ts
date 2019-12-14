@@ -25,13 +25,10 @@ import * as Control from 'ol/control';
 import { Sidebar } from 'ol/control.js';
 import SearchNominatim from 'ol-ext/control/SearchNominatim';
 import LayerSwitcher from 'ol-ext/control/LayerSwitcher';
-import Notification from 'ol-ext/control/Notification';
-import EditBar from 'ol-ext/control/EditBar';
 import { transform, getTransform, get, fromLonLat } from 'ol/proj';
 import proj4 from 'proj4';
 import OlGeoJSON from 'ol/format/GeoJSON';
 import { Fill, Circle, Stroke, Style } from 'ol/style';
-import Polygon from 'ol/geom/Polygon';
 import OlVectorSource from 'ol/source/Vector';
 import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
 import { applyTransform } from 'ol/extent';
@@ -280,6 +277,8 @@ export class MapsComponent implements OnInit, AfterViewInit {
       });
     this.map.addControl(switcher);
 
+    this.activateInfoMode();
+
   } // afterview init
 
 
@@ -408,6 +407,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     this.map.getView().setCenter(fromLonLat([Number(long), Number(lat)]));
     this.map.getView().setZoom(18);
     this.createMarkerPencarian(lat, long);
+    this.warning.open('Tampilan diperbesar ke koordinat ' + lat + ',' + long );
   }
 
   zoomToXY(X, Y) {
