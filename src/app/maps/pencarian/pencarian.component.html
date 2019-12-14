@@ -1,0 +1,46 @@
+<!--
+<div class="dialogTitle" mat-dialog-title color="primary" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+  <span cdkDragHandle>
+    {{modalTitle}}
+  </span>
+  <span class="example-spacer"></span>
+  <button matTooltip="tutup" mat-icon-button [mat-dialog-close]='true'>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+-->
+
+
+<mat-dialog-content cdkDragHandle cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <form fxLayout="column" fxLayoutAlign="space-around center">
+    <mat-tab-group  #tabGroup (selectedTabChange)="tabChanged($event)">
+      <mat-tab label="Koordinat Lintang-Bujur">
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput [(ngModel)]="lintang" name="lintang" placeholder="Koordinat Lintang">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [(ngModel)]="bujur" name="bujur" placeholder="Koordinat Bujur">
+          </mat-form-field>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Koordinat UTM">
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput [(ngModel)]="xUTM" name="xutm" placeholder="Koordinat-X">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [(ngModel)]="yUTM" name="yutm" placeholder="Koordinat-Y">
+          </mat-form-field>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <div fxFlexAlign="end">
+        <button type="submit" mat-raised-button color="primary" (click)="closeDialog(lintang, bujur, xUTM, yUTM)">Cari Lokasi</button>
+    </div>
+    
+  </form>
+
+
+</mat-dialog-content>

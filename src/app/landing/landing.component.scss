@@ -1,3 +1,12 @@
+.welcome {
+  background-color: white;
+  opacity: 0.6;  
+  //width: 20%;
+  flex: 1 1 100%; 
+  box-sizing: border-box; 
+  //max-width: 33%;"
+  height: 100vh;
+}
 
 
 video {
@@ -17,7 +26,6 @@ video {
 
 .container {
   justify-content: space-between;
-
   background-image: url("../../assets/images/tenun-klaten.jpg");
   position: fixed;
   top: 0;
@@ -38,10 +46,6 @@ video {
 .title{
   color: black;
   opacity: 1;
-}
-.welcome {
-  background-color: white;
-  opacity: 0.8;  
 }
 
 .ripple-container {

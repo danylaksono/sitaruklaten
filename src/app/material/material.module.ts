@@ -15,10 +15,12 @@ import {
   MatTableModule,
   MatSliderModule,
   MatButtonToggleModule,
+  
   //MatSort,
   //MatTableDataSource
 
 } from '@angular/material';
+
 import {MatDialogModule} from '@angular/material/dialog';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'
@@ -49,6 +51,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatTableModule,
     MatSliderModule,
     MatButtonToggleModule,
+    
     //MatSort,
     //MatTableDataSource
     
@@ -74,6 +77,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatTableModule,
     MatSliderModule,
     MatButtonToggleModule,
+    
     //MatSort,
     //MatTableDataSource
   ]

@@ -30,9 +30,8 @@ import { YesnoComponent } from './dialog/yesno/yesno.component';
 import { LayerattributeComponent } from './dialog/layerattribute/layerattribute.component';
 import { DialogIntensitasComponent } from './dialog/dialog-intensitas/dialog-intensitas.component';
 import { HalamanCetakComponent } from './dialog/halaman-cetak/halaman-cetak.component';
-
-
-
+import { PeraturanComponent } from './peraturan/peraturan.component';
+import { PencarianComponent } from './maps/pencarian/pencarian.component';
 
 
 
@@ -51,7 +50,9 @@ import { HalamanCetakComponent } from './dialog/halaman-cetak/halaman-cetak.comp
     YesnoComponent,
     LayerattributeComponent,
     DialogIntensitasComponent,
-    HalamanCetakComponent
+    HalamanCetakComponent,
+    PeraturanComponent,
+    PencarianComponent
     
     
     
@@ -60,7 +61,8 @@ import { HalamanCetakComponent } from './dialog/halaman-cetak/halaman-cetak.comp
     CekizinComponent,
     YesnoComponent,
     LayerattributeComponent,
-    DialogIntensitasComponent
+    DialogIntensitasComponent,
+    PencarianComponent
 
     
   ],
@@ -78,9 +80,7 @@ import { HalamanCetakComponent } from './dialog/halaman-cetak/halaman-cetak.comp
     FlexLayoutModule,
     MatPaginatorModule,
     NgScrollbarModule
-
-    
-    
+   
 
   ],
   providers: [

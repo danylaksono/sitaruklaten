@@ -7,7 +7,7 @@
     <div fxFlex>
         <h3 fxLayoutAlign="center">Sistem Informasi Tata Ruang </h3>
         <h4 fxLayoutAlign="center">Kabupaten Klaten </h4>
-         <span>
+         <span fxLayoutAlign="center">
       <img class="sidebar-logo" src="../../../assets/images/logo_klaten.png">
     </span>
       </div>
@@ -20,7 +20,7 @@
 
 <mat-nav-list (sidenavToggle)="printEvent($event)">
   <h3 mat-subheader>Tautan</h3>
-  <a mat-list-item (click)="toggleActive($event)" routerLink="/home" >
+  <a mat-list-item (click)="toggleActive($event)" routerLink="/" >
     <mat-icon> home </mat-icon>
     <p mat-line> Halaman Depan</p>
   </a>
