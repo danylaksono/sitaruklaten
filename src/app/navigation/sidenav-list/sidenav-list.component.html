@@ -1,3 +1,50 @@
+<ng-scrollbar #scrollable 
+  track="vertical" 
+  visibility="hover" 
+>
+
+<div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10" fxLayoutWrap>
+    <div fxFlex>
+        <h3 fxLayoutAlign="center">Sistem Informasi Tata Ruang </h3>
+        <h4 fxLayoutAlign="center">Kabupaten Klaten </h4>
+         <span fxLayoutAlign="center">
+      <img class="sidebar-logo" src="../../../assets/images/logo_klaten.png">
+    </span>
+      </div>
+  <div fxLayoutAlign="center" fxFlexOffset="10">
+   
+  </div>
+</div>
+
+
+
+<mat-nav-list (sidenavToggle)="printEvent($event)">
+  <h3 mat-subheader>Tautan</h3>
+  <a mat-list-item (click)="toggleActive($event)" routerLink="/" >
+    <mat-icon> home </mat-icon>
+    <p mat-line> Halaman Depan</p>
+  </a>
+  <a mat-list-item (click)="toggleActive($event)" routerLink="/home">
+    <mat-icon> info </mat-icon>
+    <p mat-line> Informasi</p>
+  </a>
+  <a mat-list-item (click)="toggleActive($event)" routerLink="/home">
+    <mat-icon> get_app </mat-icon>
+    <p mat-line> Unduh Peraturan</p>
+  </a>
+  <a mat-list-item (click)="toggleActive($event)" routerLink="/home">
+    <mat-icon> record_voice_over </mat-icon>
+    <p mat-line> Pengaduan</p>
+  </a>
+  
+
+</mat-nav-list>
+</ng-scrollbar>
+
+
+
+
+<!--
 <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10" fxLayoutWrap>
   <div fxLayoutAlign="center" fxFlexOffset="10">
     <a routerLink="/">
@@ -17,6 +64,10 @@
   
   <footer fxFlex fxFlexOffset="15"> <i> <small> @2019 </small> </i> </footer>
 </div>
+
+
+-->
+
 
 
   <!--
