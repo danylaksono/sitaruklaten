@@ -34,14 +34,14 @@ export class AuthService {
   }
 
   signIn(credentials) {
-    const authUrl='https://sitaru-arsip.jogjakota.go.id/auth/local';
+    const authUrl='http://localhost:3000/api/penggunas/login';
     this.http.post(authUrl, credentials).subscribe((res: any) => {
     //this.http.post('api/auth', credentials).subscribe((res: any) => {
 
-      //console.log(res);
+      console.log(res);
       //this.jwt = res.token;
       //localStorage.setItem('currentUser', res.token);
-      this.cookie.set('currentUser', res.token, 0.25);
+      this.cookie.set('currentUser', res.id, 0.25);
       this.isLoggedInSubject.next(true);
     });
   } //signin

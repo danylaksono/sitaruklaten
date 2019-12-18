@@ -1,0 +1,46 @@
+<div fxLayout="row" class="mainpanel" fxLayoutAlign="center center">
+  <div fxFlex="70" height="30vh">
+    <mat-card>
+      <h3>Formulir Pengaduan Tata Ruang</h3>
+      <mat-card-content>
+        <form class="example-form" [formGroup] = "form"  (ngSubmit)="onSubmit()">
+          <div fxLayout="row" fxLayoutGap="50px grid" fxLayoutAlign="center center">
+            <div fxFlex="50">
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="judul" formControlName="judul" type="text" placeholder="Judul Laporan*">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="nama" formControlName="nama" name="nama" type="text" placeholder="Nama Pelapor">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="email" formControlName="email" name="email" type="text" placeholder="Alamat Email Pelapor*">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <textarea rows="5" matInput formControlName="keterangan" name="keterangan" [(ngModel)]="keterangan" placeholder="Keterangan"></textarea>
+              </mat-form-field>
+            </div>
+            <div fxFlex fxFill>
+              <mat-form-field class="example-full-width">
+                <input formControlName="tanggal" [(ngModel)]="tanggal" matInput [matDatepicker]="picker" placeholder="Tanggal Kejadian">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput formControlName="lokasi" [(ngModel)]="lokasi" name="email" type="text" placeholder="Lokasi Kejadian">
+              </mat-form-field>
+              <div #pointermap id="map2" class="map sidebar-map"></div>
+            </div>
+          </div>
+
+          <mat-card-actions fxLayoutAlign="center">
+            <button type="submit" mat-raised-button color="primary">LAPOR!</button>
+          </mat-card-actions>
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+
+</div>

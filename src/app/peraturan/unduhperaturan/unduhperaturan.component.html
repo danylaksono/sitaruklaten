@@ -1,0 +1,38 @@
+<div fxFill fxLayout="row">
+
+  <div fxFlex fxLayoutAlign="center center">
+    <mat-card style="min-width:400px">
+      <!--
+<div class="mb">
+        <mat-form-field>
+          <input #queryInp matInput id="pdfQueryInput" type="text" placeholder="Search..." [value]="pdfQuery"
+            (input)="searchQueryChanged($event.target.value)" (keyup.enter)="searchQueryChanged(queryInp.value)">
+          <mat-hint>Search in entire pdf</mat-hint>
+        </mat-form-field>
+      </div>
+      -->
+      
+
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Pilih Dokumen untuk ditampilkan</mat-label>
+          <mat-select (selectionChange)="onChangeSelect($event.value)">
+            <mat-option *ngFor="let data of dataSource;  let i = index" [value]="data">
+              {{data.nama}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-card>
+  </div>
+
+  <div fxFlex>
+    <div class="pdf-container" style="padding: 10px; max-width:750px">
+      <pdf-viewer (error)="onError($event)" [src]="src" [original-size]="false" [fit-to-page]="true"
+        [render-text]="true" style="display: block;">
+      </pdf-viewer>
+
+    </div>
+  </div>
+
+</div>

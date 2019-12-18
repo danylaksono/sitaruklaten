@@ -1,7 +1,9 @@
+import { AuthService } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
 import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-sidenav-list',
@@ -21,10 +23,16 @@ export class SidenavListComponent implements OnInit {
 
   element: HTMLElement;
   isExpanded = false;
+
+  isLoggedIn : Observable<boolean>;
   
  
 
-  constructor() { }
+  constructor(
+    private auth: AuthService
+  ) { 
+    this.isLoggedIn = auth.isLoggedIn();
+  }
 
   printEvent(event){
     console.log(event);

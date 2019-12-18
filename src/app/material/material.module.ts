@@ -9,6 +9,7 @@ import {
   MatIconModule, 
   MatListModule,
   MatCardModule,
+  MatSelectModule,
   MatTooltipModule,
   MatRippleModule,
   MatExpansionModule,
@@ -51,6 +52,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatTableModule,
     MatSliderModule,
     MatButtonToggleModule,
+    MatSelectModule
     
     //MatSort,
     //MatTableDataSource
@@ -77,7 +79,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatTableModule,
     MatSliderModule,
     MatButtonToggleModule,
-    
+    MatSelectModule
     //MatSort,
     //MatTableDataSource
   ]

@@ -10,7 +10,9 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatPaginatorModule } from '@angular/material/paginator'
-import { NgScrollbarModule, NG_SCROLLBAR_OPTIONS } from 'ngx-scrollbar';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PdfViewerModule } from 'ng2-pdf-viewer'; 
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import { CookieService } from 'ngx-cookie-service';
@@ -20,7 +22,7 @@ import { LandingComponent } from './landing/landing.component';
 import { MapsComponent } from './maps/maps.component';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatDialogModule } from "@angular/material";
+import { MatDialogModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatNativeDateModule } from "@angular/material";
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { CekizinComponent } from './dialog/cekizin/cekizin.component';
@@ -32,6 +34,12 @@ import { DialogIntensitasComponent } from './dialog/dialog-intensitas/dialog-int
 import { HalamanCetakComponent } from './dialog/halaman-cetak/halaman-cetak.component';
 import { PeraturanComponent } from './peraturan/peraturan.component';
 import { PencarianComponent } from './maps/pencarian/pencarian.component';
+import { UnduhperaturanComponent } from './peraturan/unduhperaturan/unduhperaturan.component';
+import { PengaduanComponent } from './pengaduan/pengaduan.component';
+import { LamanpengaduanComponent } from './pengaduan/lamanpengaduan/lamanpengaduan.component';
+import { CekAduanComponent } from './cek-aduan/cek-aduan.component';
+import { LamanCekAduanComponent } from './cekAduan/laman-cek-aduan/laman-cek-aduan.component';
+import { PdfViewerComponent } from './cekAduan/pdf-viewer/pdf-viewer.component';
 
 
 
@@ -52,7 +60,14 @@ import { PencarianComponent } from './maps/pencarian/pencarian.component';
     DialogIntensitasComponent,
     HalamanCetakComponent,
     PeraturanComponent,
-    PencarianComponent
+    PencarianComponent,
+    UnduhperaturanComponent,
+    PengaduanComponent,
+    LamanpengaduanComponent,
+    CekAduanComponent,
+    LamanCekAduanComponent,
+    PdfViewerComponent,
+    
     
     
     
@@ -79,12 +94,22 @@ import { PencarianComponent } from './maps/pencarian/pencarian.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     MatPaginatorModule,
-    NgScrollbarModule
+    PerfectScrollbarModule,
+    PdfViewerModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
+    
    
 
   ],
   providers: [
-    CookieService
+    CookieService,
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

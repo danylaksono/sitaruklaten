@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
     dialogConfig.data = {
       id: 1,
       title: 'Log Out Admin',
-      article: 'Keluar dari Mode Administator?'
+      article: 'Keluar dari Mode Administrator?'
 
     };
     const dialogRef = this.dialog.open(YesnoComponent, dialogConfig);

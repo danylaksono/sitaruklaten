@@ -21,6 +21,7 @@ export class HighlightfeatureService {
   popup: any;
   VectorLayer: OlVectorLayer;
   overlay: Overlay;
+  dialogRef;
   
 
   constructor(
@@ -102,6 +103,8 @@ export class HighlightfeatureService {
     var style = new Style({
       fill: new Fill({
         color: 'yellow'
+        
+
       }),
       stroke: new Stroke({
         color: 'red',
@@ -111,9 +114,10 @@ export class HighlightfeatureService {
     this.VectorLayer = new OlVectorLayer({
       source: vectorSource,
       style: style,
+      opacity: 0.7,
       renderMode: 'image',
       //@ts-ignore
-      title: 'Bidang Tanah Terpilih',
+      title: 'Zona Terpilih',
       name: 'Selected'
       //map: this.map
     });
@@ -140,9 +144,9 @@ export class HighlightfeatureService {
       //article: 'Keluar dari Mode Administator?'
 
     };
-    const dialogRef = this.dialog.open(LayerattributeComponent, dialogConfig);
+    this.dialogRef = this.dialog.open(LayerattributeComponent, dialogConfig);
     //dialogRef.closeAll();
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialogRef.afterClosed().subscribe(result => {
       if (result === 'A') {
         // handle A button close
         //console.log('A');

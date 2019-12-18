@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PeraturanComponent implements OnInit {
 
+  
+
   constructor() { }
 
   ngOnInit() {

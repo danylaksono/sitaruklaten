@@ -6,7 +6,6 @@ import { AuthService } from '../../service/auth.service';
 import { Observable } from 'rxjs';
 
 
-
 export interface dataPolaBidang {
   atribut: string;
   keterangan: any;
@@ -63,8 +62,7 @@ export class LayerattributeComponent implements OnInit {
     this.dataSource =  ELEMENT_DATA;
 
     //console.log(data.atribut);
-    
-    
+        
   }
 
 

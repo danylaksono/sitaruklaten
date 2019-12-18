@@ -25,12 +25,12 @@ import * as Control from 'ol/control';
 import { Sidebar } from 'ol/control.js';
 import SearchNominatim from 'ol-ext/control/SearchNominatim';
 import LayerSwitcher from 'ol-ext/control/LayerSwitcher';
-import { transform, getTransform, get, fromLonLat } from 'ol/proj';
+import { transform, getTransform, get, fromLonLat, toLonLat } from 'ol/proj';
 import proj4 from 'proj4';
 import OlGeoJSON from 'ol/format/GeoJSON';
 import { Fill, Circle, Stroke, Style } from 'ol/style';
 import OlVectorSource from 'ol/source/Vector';
-import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
+
 import { applyTransform } from 'ol/extent';
 
 
@@ -54,7 +54,7 @@ import { zoom } from 'ol/interaction/Interaction';
 
 @NgModule({
   imports: [
-    SmoothScrollModule
+    
   ]
 })
 
@@ -81,6 +81,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
   VectorLayer: OlVectorLayer;
   sLayer: OlVectorLayer;
   editLayer: OlVectorLayer;
+  mark: Overlay;
 
   linkServer: string = 'http://103.108.187.217/geoserver/';
   linkWMS: string = this.linkServer + 'sitaru/wms';
@@ -112,7 +113,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     private daftarkegiatan: DaftarkegiatanService,
     private dialog: MatDialog,
     private hightlight: HighlightfeatureService,
-    private smoothScroll: SmoothScrollModule,
+    
     private warning: WarningSnackbarService,
     private cookie: CookieService,
     private auth: AuthService,
@@ -264,6 +265,15 @@ export class MapsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+    var view = this.map.getView();
+    view.on('change:resolution', function(evt) {
+        console.log("resolution", view.getResolution());
+    });
+
+
+
+
+
     var toc = this.switcher.nativeElement; // getting switcher DOM    
     //LayerSwitcher.renderPanel(this.map, toc); // should be located in ngAfterViewInit instead of onInit
 
@@ -286,7 +296,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
 
 
   activateInfoMode() {
-    this.clearSelected();
+    //this.clearSelected();
     this.editMode = false;
     //this.hideEditBar();
     if (this.drawInteraction) {
@@ -300,7 +310,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
   }
 
   activateEditMode() {
-    this.clearSelected();
+    //this.clearSelected();
     this.editMode = true;
     unByKey(this.clickEventKey);
     this.addInteractions();
@@ -343,6 +353,12 @@ export class MapsComponent implements OnInit, AfterViewInit {
 
 
   getInfoCallback = (evt) => {
+    this.dialog.closeAll();
+
+    
+    var lonlat = toLonLat(evt.coordinate); 
+    this.createMarkerPencarian(lonlat[1], lonlat[0]);
+    
     // test call modal
 
     var viewResolution = /** @type {number} */ (this.view.getResolution());
@@ -368,6 +384,8 @@ export class MapsComponent implements OnInit, AfterViewInit {
     this.hightlight.clearHighlight(this.map);
     this.map.removeLayer(this.sLayer);
     this.map.removeLayer(this.editLayer);
+    //this.map.removeOverlay(this.mark)
+    this.dialog.closeAll();
   }
 
 
@@ -388,7 +406,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(PencarianComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       //console.log("Dialog closed")
-      console.log('hasil lengkap', result);
+      //console.log('hasil lengkap', result);
 
       if (result.bujur && result.lintang) {
         this.zoomToLatLng(result.Y, result.X);
@@ -417,7 +435,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     if (!get(UTM49S)) {
       console.error("Failed to register projection in OpenLayers");
     } else {
-      console.log(get(UTM49S));
+      //console.log(get(UTM49S));
     }
     var newUTMProj = get(UTM49S);
     var fromLonLat = getTransform('EPSG:4326', UTM49S);
@@ -431,11 +449,11 @@ export class MapsComponent implements OnInit, AfterViewInit {
   createMarkerPencarian(lat, long) {
     this.showMarker = true;
     var pos = fromLonLat([parseFloat(long), parseFloat(lat)]);
-    var mark = new Overlay({
+    this.mark = new Overlay({
       position: pos,
       element: document.getElementById('location-marker')
     });
-    this.map.addOverlay(mark);
+    this.map.addOverlay(this.mark);
   }
 
 

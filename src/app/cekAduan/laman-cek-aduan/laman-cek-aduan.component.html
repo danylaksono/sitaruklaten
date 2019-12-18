@@ -1,0 +1,69 @@
+<div fxLayout="row" class="mainpanel" fxLayoutAlign="center center">
+  <div fxFlex="70" height="30vh">
+    <mat-card>
+      <h3>Daftar Aduan</h3>
+      <mat-card-content>
+
+        <mat-list>
+          <perfect-scrollbar>
+
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let report of listOfReport">
+                <mat-expansion-panel-header>
+                    
+                  <mat-panel-title fxlayout="row" fxlayoutalign="center center" fxlayoutgap="5px">
+                    <div fxFlex="10">
+                        <mat-icon>chat</mat-icon>
+                    </div>
+                      <div fxFlex="30">
+                          <p mat-line>{{report.judul}}</p>
+                      </div>
+                      <div fxFlex fxFlexAlign="end">
+                          <p  mat-line> Tanggal laporan: {{report.tanggal | date}} </p>
+                      </div>
+                      
+                      
+                  </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <div>
+                    <p mat-line> Isi laporan: {{report.keterangan}} </p>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <!--
+          <h3 mat-subheader>Folders</h3>
+          <mat-list-item *ngFor="let report of listOfReport">
+              <mat-accordion>
+            <mat-expansion-panel >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Pola Ruang
+                </mat-panel-title>
+
+              </mat-expansion-panel-header>
+              <div>
+                <img
+                  src="http://103.108.187.217/geoserver/sitaru/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=sitaru:pola_ruang">
+              </div>
+            </mat-expansion-panel>
+            <mat-icon mat-list-icon>chat</mat-icon>
+            <h4 mat-line>{{report.judul}}</h4>
+            <p mat-line> Tanggal laporan: {{report.tanggal | date}} </p>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+
+            -->
+
+          </perfect-scrollbar>
+        </mat-list>
+
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+
+</div>
