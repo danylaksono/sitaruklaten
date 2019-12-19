@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { PDFJSStatic } from 'pdfjs-dist';
 //import { PdfViewerComponent } from 'ng2-pdf-viewer/ng2-pdf-viewer';
 //PdfViewerComponent
 
 
+export {
+  PDFJSStatic,
+  PDFDocumentProxy,
+  PDFViewerParams,
+  PDFPageProxy,
+  PDFSource,
+  PDFProgressData,
+  PDFPromise
+} from 'pdfjs-dist';
 
 
 export interface dataPDF {
@@ -36,11 +43,13 @@ export class UnduhperaturanComponent implements OnInit {
 
   pdfQuery = '';
 
-  // modal dialog data
-  modalTitle: string;
-  modalArticle: string;
-  modalList: string[];
-  src:any;
+  page: number = 1;
+  nama: String;
+  totalPages: number;
+  isLoaded: boolean = false;
+  showAll: boolean = true;
+  src:String;
+  zoomLevel:number = 1;
 
   
   constructor(
@@ -51,23 +60,23 @@ export class UnduhperaturanComponent implements OnInit {
     const ELEMENT_DATA: dataPDF[] = [
       { 
         nama: 'Perpres No. 70 Tahun 2014', 
-        fileURL: '../../../assets/pdf/PerpresNo70Th2014.pdf'
+        fileURL: "/assets/pdf/PerpresNo70Th2014.pdf"
       },
       { 
         nama: 'Lampiran I Perpres No 70 Tahun 2014', 
-        fileURL: '../../../assets/pdf/PerpresNo70Th2014LAMPIRAN-I.pdf' 
+        fileURL: '/assets/pdf/PerpresNo70Th2014LAMPIRAN-I.pdf' 
       },
       { 
         nama: 'Lampiran II Perpres No 70 Tahun 2014', 
-        fileURL: '../../../assets/pdf/PerpresNo70Th2014-LAMPIRAN-II.pdf' 
+        fileURL: '/assets/pdf/PerpresNo70Th2014-LAMPIRAN-II.pdf' 
       },
       { 
         nama: 'Lampiran III Perpres No 70 Tahun 2014', 
-        fileURL: '../../../assets/pdf/PerpresNo70Th2014-LAMPIRAN-III.pdf' 
+        fileURL: '/assets/pdf/PerpresNo70Th2014-LAMPIRAN-III.pdf' 
       },
       { 
         nama: 'Perda No 11 Tahun 2014', 
-        fileURL: '../../../assets/pdf/PERDA11TAHUN2011RTRWKLATEN.pdf' 
+        fileURL: '/assets/pdf/PERDA11TAHUN2011RTRWKLATEN.pdf' 
       }
     ];
 
@@ -81,13 +90,39 @@ export class UnduhperaturanComponent implements OnInit {
   }
 
   onChangeSelect(e){
-    console.log("changed", e);
     this.src = e.fileURL;
+    this.nama = e.nama;
+    console.log("file URL", this.src);
   }
 
   onError(error: any) {
     console.log(error);
   }
+
+  afterLoadComplete(pdfData: any) {
+    this.totalPages = pdfData.numPages;
+    this.isLoaded = true;
+  }
+
+  nextPage() {
+    this.page++;
+  }
+
+  prevPage() {
+    this.page--;
+
+  }
+
+  incrementZoom(amount: number) {
+    console.log(amount);
+    this.zoomLevel += amount;
+  }
+
+  print(value){
+    console.log(value);
+  }
+
+
 
   /*
   searchQueryChanged(newQuery: string) {

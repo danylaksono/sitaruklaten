@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   public jwt: string;
   public showSignup: Boolean = true;
   public user: string;
+  hide = true;
   
 
   constructor(
@@ -67,13 +68,5 @@ export class LoginComponent implements OnInit {
 
 
 
-testRoute() {
-  this.user = localStorage.getItem('currentUser');
-  let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.user)
-  this.http.get('http://localhost:3000/users/test', { headers: headers }).subscribe((res) => {
-    console.log(res);
-  });
-  this.auth.isSignedIn();
-}
 
 */

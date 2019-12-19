@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import OlMap from 'ol/Map';
-import OlXYZ from 'ol/source/XYZ';
+import XYZ from 'ol/source/XYZ';
 import OlTileLayer from 'ol/layer/Tile';
 import OlView from 'ol/View';
 import OSM from 'ol/source/OSM';
 import * as Control from 'ol/control';
 import { transform, getTransform, get, fromLonLat, toLonLat } from 'ol/proj';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+//import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import Overlay from 'ol/Overlay';
 
 import { HttpClient } from '@angular/common/http';
 import { WarningSnackbarService } from 'src/app/dialog/warning-snackbar.service';
@@ -30,13 +31,17 @@ export class LamanpengaduanComponent implements OnInit {
   lokasi: any;
   tanggal: Date;
 
+  //SERVER_URL = "http://103.108.187.217:3000/api/laporans";
   SERVER_URL = "http://localhost:3000/api/laporans";
   form: FormGroup;
 
   map: OlMap;
-  source: OlXYZ;
+  source: XYZ;
   layer: OlTileLayer;
   view: OlView;
+
+  showMarker:Boolean = true;
+  clickEventKey: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,7 +68,7 @@ export class LamanpengaduanComponent implements OnInit {
 
     this.view = new OlView({
       center: fromLonLat([110.6164835, -7.6929626]),
-      zoom: 18
+      zoom: 13
       //projection: 'EPSG:4326'
     });
 
@@ -76,7 +81,16 @@ export class LamanpengaduanComponent implements OnInit {
       }),
       layers: [
         new OlTileLayer({
-          source: new OSM()
+          source:
+          new XYZ({
+            //@ts-ignore
+            url: 'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}',
+            //https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/
+            //@ts-ignore
+            transparent: true,
+            //@ts-ignore
+            wrapx: false
+          })
         })
       ],
       view: this.view
@@ -116,6 +130,28 @@ export class LamanpengaduanComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+  }
+
+  pickLocation(){
+    this.clickEventKey = this.map.on('click', this.getInfoCallback);
+  }
+
+  getInfoCallback = (evt) => {
+       
+    var lonlat = toLonLat(evt.coordinate); 
+    //this.createMarkerPencarian(lonlat[1], lonlat[0]);
+     
+  };  //==onclick
+
+
+  createMarkerPencarian(lat, long) {
+    this.showMarker = true;
+    var pos = fromLonLat([parseFloat(long), parseFloat(lat)]);
+    var mark = new Overlay({
+      position: pos,
+      element: document.getElementById('location-marker')
+    });
+    this.map.addOverlay(mark);
   }
 
 

@@ -9,7 +9,7 @@ import OlGeoJSON from 'ol/format/GeoJSON';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { WarningSnackbarService } from './../dialog/warning-snackbar.service';
 import { Overlay } from 'ol';
-import { MainqueryService } from './mainquery.service';
+//import { MainqueryService } from './mainquery.service';
 
 
 @Injectable({
@@ -26,7 +26,7 @@ export class HighlightfeatureService {
 
   constructor(
     private warning: WarningSnackbarService,
-    private query: MainqueryService,
+    //private query: MainqueryService,
     public dialog: MatDialog
   ) { }
 

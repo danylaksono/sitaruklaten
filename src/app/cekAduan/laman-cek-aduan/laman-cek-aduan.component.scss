@@ -1,21 +1,102 @@
+.item {
+  //background-color: cornflowerblue;
+  padding: 5px;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+tr.example-element-row:hover {
+  background: lightblue;
+  cursor: pointer;
+}
+
+tr.example-element-row:active {
+  background: cornflowerblue;
+}
+
+tr.active td {
+  background-color: #3F51B5 !important;
+  color: white;
+}
+
+.table-container {
+  position: relative;
+  max-height: 500px;
+  overflow: auto;
+}
+
+
+.container {
+  width: 100%;
+  height: calc(100vh - 50px) !important;
+  bottom: 0px;
+
+}
+
+
 .mainpanel {
-    width: 100%;
-    height: calc(100vh - 50px);
-  };
-  
-  
-  .map {
-      //width: 100%;
-      min-height: 200px;
-    };
-  
-  .example-form {
-    //min-width: 150px;
-    //max-width: 700px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
-  
+  width: 100%;
+  height: calc(100vh - 50px);
+}
+
+;
+
+
+.map {
+  //width: 100%;
+  min-height: 200px;
+}
+
+;
+
+.example-form {
+  //min-width: 150px;
+  //max-width: 700px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+mat-dialog-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+table {
+  width: 100%;
+}
+
+table thead {
+  display: none !important;
+}
+
+
+.dialogTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-button-toggle-group {
+  width: 80%;
+}
+
+mat-button-toggle {
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+
+
+.map {
+  width: 100%;
+  min-height: 150px;
+}
+
+;

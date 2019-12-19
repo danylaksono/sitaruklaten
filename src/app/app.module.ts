@@ -22,7 +22,7 @@ import { LandingComponent } from './landing/landing.component';
 import { MapsComponent } from './maps/maps.component';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatDialogModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatNativeDateModule } from "@angular/material";
+import { MatDialogModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatNativeDateModule, MatSortModule } from "@angular/material";
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { CekizinComponent } from './dialog/cekizin/cekizin.component';
@@ -102,7 +102,8 @@ import { PdfViewerComponent } from './cekAduan/pdf-viewer/pdf-viewer.component';
     MatIconModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule ,
+    MatSortModule
     
    
 

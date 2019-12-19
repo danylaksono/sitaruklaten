@@ -1,4 +1,4 @@
-import { DataitbxService } from './../../service/dataitbx.service';
+//import { DataitbxService } from './../../service/dataitbx.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../service/auth.service';
 
@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private itbx: DataitbxService
+    //private itbx: DataitbxService
   ) { }
 
   getUser(){

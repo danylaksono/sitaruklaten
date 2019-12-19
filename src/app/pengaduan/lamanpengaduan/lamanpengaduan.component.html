@@ -19,7 +19,7 @@
                 <textarea rows="5" matInput formControlName="keterangan" name="keterangan" [(ngModel)]="keterangan" placeholder="Keterangan"></textarea>
               </mat-form-field>
             </div>
-            <div fxFlex fxFill>
+            <div fxFlex>
               <mat-form-field class="example-full-width">
                 <input formControlName="tanggal" [(ngModel)]="tanggal" matInput [matDatepicker]="picker" placeholder="Tanggal Kejadian">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -27,6 +27,7 @@
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <input matInput formControlName="lokasi" [(ngModel)]="lokasi" name="email" type="text" placeholder="Lokasi Kejadian">
+                <mat-icon style="cursor:pointer" (click)="pickLocation()" matSuffix>outlined_flag</mat-icon>
               </mat-form-field>
               <div #pointermap id="map2" class="map sidebar-map"></div>
             </div>
@@ -44,3 +45,9 @@
 
 
 </div>
+
+<div [hidden]="!showMarker" id="location-marker" class="marker">
+    <img src="../../assets/images/flag.png">
+    <span class="pulse"></span>
+</div>
+

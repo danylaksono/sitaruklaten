@@ -34,6 +34,7 @@ export class AuthService {
   }
 
   signIn(credentials) {
+    //const authUrl='http://103.108.187.217:3000/api/penggunas/login';
     const authUrl='http://localhost:3000/api/penggunas/login';
     this.http.post(authUrl, credentials).subscribe((res: any) => {
     //this.http.post('api/auth', credentials).subscribe((res: any) => {
