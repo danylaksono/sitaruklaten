@@ -1,10 +1,14 @@
-<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="15px"
+<div class="main-container" fxLayout fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="15px"
   fxLayoutGap.xs="0">
-  <div class="item" fxFlex>
+  <div class="item item-form" fxFlex>
+    
     <form class="form-pengaduan" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mat-typography">
+          <h2  style="color: cornflowerblue">PENGADUAN INFORMASI TATA RUANG</h2>
+      </div>
+      
       <div fxLayout="row" fxLayoutAlign="center" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutGap.xs="0">
-        <div class="item item-1" fxFlex="50%">
-
+        <div class="item item-1" fxFlex>
           <div fxLayout="row" fxLayoutGap="50px grid" fxLayoutAlign="center center">
             <div fxFlex>
               <mat-form-field class="example-full-width">
@@ -19,7 +23,7 @@
                   placeholder="Alamat Email Pelapor*">
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <textarea rows="5" matInput formControlName="keterangan" name="keterangan" [(ngModel)]="keterangan"
+                <textarea rows="3" matInput formControlName="keterangan" name="keterangan" [(ngModel)]="keterangan"
                   placeholder="Keterangan"></textarea>
               </mat-form-field>
             </div>
@@ -41,7 +45,7 @@
                 <mat-icon>
                   room
                 </mat-icon>
-                
+
               </a>
             </div>
             <mat-form-field class="example-full-width">
@@ -68,8 +72,8 @@
       style="text-align: center;">
       <div class="pengaduan-info">
         <img src="/assets/images/city.webp" width="100%">
-        <h3>Formulir Pengaduan Tata Ruang</h3>
-        <p class="mat-typography"> Masyarakat terlibat dalam proses perencanaan, pemanfaatan dan pengendalian
+        <h3> Formulir Pengaduan Tata Ruang</h3>
+        <p class="mat-typography"> Masyarakat turut terlibat dalam proses perencanaan, pemanfaatan dan pengendalian
           tata ruang sesuai amanat UU No. 26 Tahun 2007 tentang Penataan Ruang, pasal 65
           dan PP No. 68 Tahun 2010 tentang Bentuk dan Tata Cara Peran Masyarakat dalam
           Penataan Ruang. </p>

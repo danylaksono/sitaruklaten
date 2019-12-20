@@ -1,7 +1,10 @@
 .item {
   //background-color: cornflowerblue;
-  background-color: rgba($color: white, $alpha: 0.6);
+  background-color: rgba($color: white, $alpha: 0.8);
   //padding: 15px;
+}
+.item-form {
+  margin:15px; 
 }
 
 .pengaduan-info{
@@ -10,6 +13,8 @@
 
 .form-pengaduan {
   padding: 50px;
+  margin: 20px;
+  background-color: rgba($color: white, $alpha: 0.95);;
 }
 
 .container {
@@ -26,17 +31,29 @@
 .mainpanel {
   width: 100%;
   height: calc(100vh - 50px);
-}
-
-;
+};
 
 
 .map {
   width: 100%;
   min-height: 200px;
-}
+};
 
-;
+.main-container {
+  justify-content: space-between;
+  background-image: url("/assets/images/jemparingan.jpg");
+  position: fixed;
+  top: 50px;
+  left: 0;
+  height: calc(100vh - 50px);
+   
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+}
 
 .example-form {
   //min-width: 150px;
