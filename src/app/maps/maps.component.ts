@@ -48,7 +48,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { PencarianlayerService } from './../service/pencarianlayer.service';
 import { AuthService } from './../service/auth.service';
 import { PencarianComponent } from './../maps/pencarian/pencarian.component';
-import { zoom } from 'ol/interaction/Interaction';
+
 
 
 
@@ -406,10 +406,10 @@ export class MapsComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(PencarianComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       //console.log("Dialog closed")
-      //console.log('hasil lengkap', result);
+      console.log('hasil lengkap', result);
 
       if (result.bujur && result.lintang) {
-        this.zoomToLatLng(result.Y, result.X);
+        this.zoomToLatLng(result.lintang, result.bujur);
       } else if (result.xUTM && result.yUTM) {
         this.zoomToXY(result.xUTM, result.yUTM);
       }

@@ -1,3 +1,89 @@
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="15px"
+  fxLayoutGap.xs="0">
+  <div class="item" fxFlex>
+    <form class="form-pengaduan" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div fxLayout="row" fxLayoutAlign="center" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="50%">
+
+          <div fxLayout="row" fxLayoutGap="50px grid" fxLayoutAlign="center center">
+            <div fxFlex>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="judul" formControlName="judul" type="text" placeholder="Judul Laporan*">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="nama" formControlName="nama" name="nama" type="text"
+                  placeholder="Nama Pelapor">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="email" formControlName="email" name="email" type="text"
+                  placeholder="Alamat Email Pelapor*">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <textarea rows="5" matInput formControlName="keterangan" name="keterangan" [(ngModel)]="keterangan"
+                  placeholder="Keterangan"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class=" item item-1" fxFlex>
+          <div fxFlex>
+            <mat-form-field class="example-full-width">
+              <input formControlName="tanggal" [(ngModel)]="tanggal" matInput [matDatepicker]="picker"
+                placeholder="Tanggal Kejadian">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <div style="width:100%">
+              <p>Klik tandai lokasi:</p>
+              <a mat-stroked-button style="cursor:pointer" (click)="pickLocation()">
+                <mat-icon>
+                  room
+                </mat-icon>
+                
+              </a>
+            </div>
+            <mat-form-field class="example-full-width">
+              <textarea [disabled] rows="5" matInput formControlName="lokasi" name="lokasi" [ngModel]="lokasi | json"
+                placeholder="Lokasi"></textarea>
+            </mat-form-field>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <div class="submit-button">
+        <button type="submit" style="width: 100%;" mat-raised-button color="primary">LAPOR!</button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div fxFlex="30%" fxHide.xs>
+    <div fxFlex fxLayoutAlign="center center" class="container pengaduan-info mat-elevation-z8 item"
+      style="text-align: center;">
+      <div class="pengaduan-info">
+        <img src="/assets/images/city.webp" width="100%">
+        <h3>Formulir Pengaduan Tata Ruang</h3>
+        <p class="mat-typography"> Masyarakat terlibat dalam proses perencanaan, pemanfaatan dan pengendalian
+          tata ruang sesuai amanat UU No. 26 Tahun 2007 tentang Penataan Ruang, pasal 65
+          dan PP No. 68 Tahun 2010 tentang Bentuk dan Tata Cara Peran Masyarakat dalam
+          Penataan Ruang. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!--
 <div fxLayout="row" class="mainpanel" fxLayoutAlign="center center">
   <div fxFlex="70" height="30vh">
     <mat-card>
@@ -46,8 +132,5 @@
 
 </div>
 
-<div [hidden]="!showMarker" id="location-marker" class="marker">
-    <img src="../../assets/images/flag.png">
-    <span class="pulse"></span>
-</div>
 
+-->

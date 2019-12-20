@@ -20,7 +20,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { MainViewComponent } from './main-view/main-view.component';
 import { LandingComponent } from './landing/landing.component';
 import { MapsComponent } from './maps/maps.component';
-import { NavComponent } from './nav/nav.component';
+//import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatDialogModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatNativeDateModule, MatSortModule } from "@angular/material";
 import { HeaderComponent } from './navigation/header/header.component';
@@ -40,6 +40,7 @@ import { LamanpengaduanComponent } from './pengaduan/lamanpengaduan/lamanpengadu
 import { CekAduanComponent } from './cek-aduan/cek-aduan.component';
 import { LamanCekAduanComponent } from './cekAduan/laman-cek-aduan/laman-cek-aduan.component';
 import { PdfViewerComponent } from './cekAduan/pdf-viewer/pdf-viewer.component';
+import { LocationPickerComponent } from './pengaduan/location-picker/location-picker.component';
 
 
 
@@ -49,7 +50,7 @@ import { PdfViewerComponent } from './cekAduan/pdf-viewer/pdf-viewer.component';
     MainViewComponent,
     LandingComponent,
     MapsComponent,
-    NavComponent,
+    //NavComponent,
     HeaderComponent,
     SidenavListComponent,
     CekizinComponent,
@@ -67,6 +68,7 @@ import { PdfViewerComponent } from './cekAduan/pdf-viewer/pdf-viewer.component';
     CekAduanComponent,
     LamanCekAduanComponent,
     PdfViewerComponent,
+    LocationPickerComponent,
     
     
     
@@ -77,7 +79,8 @@ import { PdfViewerComponent } from './cekAduan/pdf-viewer/pdf-viewer.component';
     YesnoComponent,
     LayerattributeComponent,
     DialogIntensitasComponent,
-    PencarianComponent
+    PencarianComponent,
+    LocationPickerComponent
 
     
   ],

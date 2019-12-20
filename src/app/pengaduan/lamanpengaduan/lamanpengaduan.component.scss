@@ -1,13 +1,42 @@
+.item {
+  //background-color: cornflowerblue;
+  background-color: rgba($color: white, $alpha: 0.6);
+  //padding: 15px;
+}
+
+.pengaduan-info{
+  padding: 15px;
+}
+
+.form-pengaduan {
+  padding: 50px;
+}
+
+.container {
+  width: 100%;
+  height: calc(100vh - 50px) !important;
+  
+}
+
+
+
+
+
+
 .mainpanel {
   width: 100%;
   height: calc(100vh - 50px);
-};
+}
+
+;
 
 
 .map {
-    width: 100%;
-    min-height: 200px;
-  };
+  width: 100%;
+  min-height: 200px;
+}
+
+;
 
 .example-form {
   //min-width: 150px;

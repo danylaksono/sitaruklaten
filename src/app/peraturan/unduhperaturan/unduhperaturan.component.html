@@ -1,7 +1,7 @@
-<div fxFill fxLayout="row">
+<div class="container" fxFill fxLayout="row">
 
   <div fxFlex fxLayoutAlign="center center">
-    <mat-card style="min-width:400px">
+    <mat-card style="width:400px">
       <div fxFlex fxLayoutGap="15px" fxLayout="column">
         <!--
 <div class="mb">
@@ -24,15 +24,18 @@
                   {{data.nama}}
                 </mat-option>
               </mat-select>
-              <button mat-button *ngIf="theselect.value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="theselect.value=''">
+              <!--
+<button mat-button *ngIf="theselect.value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="src=''">
                 <mat-icon>close</mat-icon>
               </button>
+              -->
+              
             </mat-form-field>
           </form>
         </div>
 
-        <div fxFlex>
+        <div *ngIf="isLoaded" fxFlex>
           <h4>Navigasi Halaman</h4>
           <div class="mb">
             <mat-slide-toggle [(ngModel)]="showAll">
@@ -59,7 +62,7 @@
         </div>
 
 
-        <div fxFlex>
+        <div *ngIf="isLoaded" fxFlex>
           <h4>Pengaturan Zoom</h4>
           <div *ngIf="isLoaded" style="text-align: center;">
             <button (click)="incrementZoom(-0.1)" mat-button type="button">
@@ -90,7 +93,7 @@
         </div>
 
 
-        <div fxFlex fxFlexAlign="center">
+        <div *ngIf="isLoaded" fxFlex fxFlexAlign="center">
           <a type="button" download="{{nama}}.pdf" mat-raised-button color="primary" target="_blank" [href]="src">
             <mat-icon>cloud_download</mat-icon> Unduh Dokumen (PDF)
           </a>

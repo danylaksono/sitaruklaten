@@ -1,3 +1,4 @@
+import { LocationPickerComponent } from './../location-picker/location-picker.component';
 import { Component, OnInit } from '@angular/core';
 import OlMap from 'ol/Map';
 import XYZ from 'ol/source/XYZ';
@@ -13,6 +14,10 @@ import Overlay from 'ol/Overlay';
 
 import { HttpClient } from '@angular/common/http';
 import { WarningSnackbarService } from 'src/app/dialog/warning-snackbar.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+
+
+
 
 
 
@@ -28,7 +33,10 @@ export class LamanpengaduanComponent implements OnInit {
   keterangan: String;
   email: String;
   nama: String;
-  lokasi: any;
+  lokasi: {
+    lintang: '',
+    bujur: ''
+  };
   tanggal: Date;
 
   //SERVER_URL = "http://103.108.187.217:3000/api/laporans";
@@ -47,6 +55,8 @@ export class LamanpengaduanComponent implements OnInit {
     private formBuilder: FormBuilder,
     private httpClient: HttpClient,
     private warning: WarningSnackbarService,
+    private dialog: MatDialog,
+    
     private router: Router,
   ) {
     this.form = this.formBuilder.group({
@@ -66,35 +76,6 @@ export class LamanpengaduanComponent implements OnInit {
 
   ngOnInit() {
 
-    this.view = new OlView({
-      center: fromLonLat([110.6164835, -7.6929626]),
-      zoom: 13
-      //projection: 'EPSG:4326'
-    });
-
-    // --map definitions --
-    this.map = new OlMap({
-      target: 'map2',
-      controls: Control.defaults({
-        rotate: false,
-        zoom: true
-      }),
-      layers: [
-        new OlTileLayer({
-          source:
-          new XYZ({
-            //@ts-ignore
-            url: 'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}',
-            //https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/
-            //@ts-ignore
-            transparent: true,
-            //@ts-ignore
-            wrapx: false
-          })
-        })
-      ],
-      view: this.view
-    });
   }
 
   onSubmit() {
@@ -126,32 +107,39 @@ export class LamanpengaduanComponent implements OnInit {
           this.router.navigateByUrl('/home');
         }, 3000);
 
-
       },
       (err) => console.log(err)
     );
   }
+ 
 
-  pickLocation(){
-    this.clickEventKey = this.map.on('click', this.getInfoCallback);
-  }
+  
+  pickLocation() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.data = {
+      id: 1,
+      title: 'Pencarian',
+      article: 'the article'
+    };
+    const dialogRef = this.dialog.open(LocationPickerComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      //console.log("Dialog closed")
+      console.log('hasil lengkap', result.lintang, result.bujur);
+      this.lokasi = {
+        bujur : result.bujur,
+        lintang : result.lintang
+      };
 
-  getInfoCallback = (evt) => {
-       
-    var lonlat = toLonLat(evt.coordinate); 
-    //this.createMarkerPencarian(lonlat[1], lonlat[0]);
-     
-  };  //==onclick
+      //if (result.bujur && result.lintang) {
+      //  this.zoomToLatLng(result.Y, result.X);
+      //} else if (result.xUTM && result.yUTM) {
+      //  this.zoomToXY(result.xUTM, result.yUTM);
+      //}
 
 
-  createMarkerPencarian(lat, long) {
-    this.showMarker = true;
-    var pos = fromLonLat([parseFloat(long), parseFloat(lat)]);
-    var mark = new Overlay({
-      position: pos,
-      element: document.getElementById('location-marker')
     });
-    this.map.addOverlay(mark);
   }
 
 

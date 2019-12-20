@@ -1,6 +1,23 @@
 .mainpanel {
   width: 100%;
+  height: calc(100vh - 60px);
+}
+
+.container {
+  justify-content: space-between;
+  
+  
+  background-image: url("/assets/images/jemparingan.jpg");
+  position: fixed;
+  top: 50px;
+  left: 0;
   height: calc(100vh - 50px);
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
 }
 
 pdf-viewer {
