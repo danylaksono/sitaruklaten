@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import {Router} from '@angular/router';
 import { Observable } from 'rxjs';
+import { DisclaimerComponent } from 'src/app/disclaimer/disclaimer.component';
 
 @Component({
   selector: 'app-header',
@@ -55,6 +56,24 @@ export class HeaderComponent implements OnInit {
         this.logOut();
         this.router.navigateByUrl('');
       }
+    });
+  }
+
+  //move to service on refactoring
+  disclaimer() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      title: 'Jenis Kegiatan',
+      article: 'the article',
+    };
+    const dialogRef = this.dialog.open(DisclaimerComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+
+      //console.log("Dialog closed")
+      //  console.log(result)
     });
   }
 

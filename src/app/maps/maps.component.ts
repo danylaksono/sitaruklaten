@@ -1,3 +1,4 @@
+import { DisclaimerComponent } from './../disclaimer/disclaimer.component';
 //Angular Core
 import {
   Component,
@@ -254,9 +255,11 @@ export class MapsComponent implements OnInit, AfterViewInit {
       }
     });
 
-
-
-
+    var disclaim = this.cookie.get('disclaimer');
+    console.log(disclaim);
+    if(!disclaim) {
+      this.disclaimer();
+    }
 
 
   } // oninint
@@ -454,6 +457,24 @@ export class MapsComponent implements OnInit, AfterViewInit {
       element: document.getElementById('location-marker')
     });
     this.map.addOverlay(this.mark);
+  }
+
+  //move to service on refactoring
+  disclaimer() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      title: 'Jenis Kegiatan',
+      article: 'the article',
+    };
+    const dialogRef = this.dialog.open(DisclaimerComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+
+      //console.log("Dialog closed")
+      //  console.log(result)
+    });
   }
 
 

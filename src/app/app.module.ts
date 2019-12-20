@@ -41,6 +41,7 @@ import { CekAduanComponent } from './cek-aduan/cek-aduan.component';
 import { LamanCekAduanComponent } from './cekAduan/laman-cek-aduan/laman-cek-aduan.component';
 import { PdfViewerComponent } from './cekAduan/pdf-viewer/pdf-viewer.component';
 import { LocationPickerComponent } from './pengaduan/location-picker/location-picker.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 
 
 
@@ -69,6 +70,7 @@ import { LocationPickerComponent } from './pengaduan/location-picker/location-pi
     LamanCekAduanComponent,
     PdfViewerComponent,
     LocationPickerComponent,
+    DisclaimerComponent,
     
     
     
@@ -80,7 +82,8 @@ import { LocationPickerComponent } from './pengaduan/location-picker/location-pi
     LayerattributeComponent,
     DialogIntensitasComponent,
     PencarianComponent,
-    LocationPickerComponent
+    LocationPickerComponent,
+    DisclaimerComponent
 
     
   ],
