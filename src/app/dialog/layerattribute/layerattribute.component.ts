@@ -52,7 +52,7 @@ export class LayerattributeComponent implements OnInit {
       {atribut: 'Kecamatan', keterangan: data.atribut.KECAMATAN},
       {atribut: 'Existing', keterangan: data.atribut.EXISTING},
       {atribut: 'Rencana', keterangan: data.atribut.RENCANA},
-      {atribut: 'Luas (ha)', keterangan: data.atribut.HECTARES},
+      {atribut: 'Luas (ha)', keterangan: data.atribut.HECTARES.toFixed(2) },
     ];
 
     this.modalTitle = data.title;

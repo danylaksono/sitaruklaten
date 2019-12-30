@@ -1,117 +1,139 @@
 <div class="container" fxFill fxLayout="row">
 
   <div fxFlex fxLayoutAlign="center center">
-    <mat-card style="width:400px">
-      <div fxFlex fxLayoutGap="15px" fxLayout="column">
-        <!--
-<div class="mb">
-        <mat-form-field>
-          <input #queryInp matInput id="pdfQueryInput" type="text" placeholder="Search..." [value]="pdfQuery"
-            (input)="searchQueryChanged($event.target.value)" (keyup.enter)="searchQueryChanged(queryInp.value)">
-          <mat-hint>Search in entire pdf</mat-hint>
-        </mat-form-field>
-      </div>
-      -->
-
-
-        <div fxFlex>
-          <h4>Dokumen Peraturan Tata Ruang</h4>
-          <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Pilih Dokumen untuk ditampilkan</mat-label>
-              <mat-select #theselect (selectionChange)="onChangeSelect($event.value)">
-                <mat-option *ngFor="let data of dataSource;  let i = index" [value]="data">
-                  {{data.nama}}
-                </mat-option>
-              </mat-select>
-              <!--
+    <mat-card style="width:400px;">
+      <perfect-scrollbar style="max-height: calc(70vh);">
+        <div fxFlex fxLayoutGap="15px" fxLayout="column">
+          <div fxFlex>
+            <h4>Dokumen Peraturan Tata Ruang</h4>
+            <form class="example-form">
+              <mat-form-field class="example-full-width">
+                <mat-label>Pilih Dokumen untuk ditampilkan</mat-label>
+                <mat-select #theselect (selectionChange)="onChangeSelect($event.value)">
+                  <mat-option *ngFor="let data of dataSource;  let i = index" [value]="data">
+                    {{data.nama}}
+                  </mat-option>
+                </mat-select>
+                <!--
 <button mat-button *ngIf="theselect.value" matSuffix mat-icon-button aria-label="Clear"
                 (click)="src=''">
                 <mat-icon>close</mat-icon>
               </button>
               -->
-              
-            </mat-form-field>
-          </form>
-        </div>
 
-        <div *ngIf="isLoaded" fxFlex>
-          <h4>Navigasi Halaman</h4>
-          <div class="mb">
-            <mat-slide-toggle [(ngModel)]="showAll">
-              Halaman bersambung
-            </mat-slide-toggle>
+              </mat-form-field>
+            </form>
           </div>
-          <div *ngIf="!showAll" style="text-align: center;">
-            <button mat-button color="primary" (click)="prevPage()" [disabled]="page === 1">
-              <mat-icon>arrow_left</mat-icon>
-            </button>
-            <span> &nbsp; Halaman {{ page }} dari {{ totalPages }} &nbsp;</span>
-            <button mat-button color="primary" (click)="nextPage()" [disabled]="page === totalPages">
-              <mat-icon>arrow_right</mat-icon>
-            </button>
+          <div *ngIf="isLoaded" fxFlex>
+            <h4>Navigasi Halaman</h4>
+            <div class="mb">
+              <mat-form-field class="example-full-width">
+                <input #queryInp matInput id="pdfQueryInput" type="text" placeholder="Cari teks..." [value]="pdfQuery"
+                  (input)="searchQueryChanged($event.target.value)" (keyup.enter)="searchQueryChanged(queryInp.value)">
+                <!--mat-hint->Pencarian teks di dokumen yang dimuat</!--mat-hint-->
+              </mat-form-field>
+            </div>
+
           </div>
-          <div *ngIf="!showAll">
-            <span>Lompat ke halaman: </span>
+          <div *ngIf="isLoaded" fxFlex>
+            <h4>Navigasi Halaman</h4>
+            <div class="mb">
+              <mat-slide-toggle [(ngModel)]="showAll">
+                Halaman bersambung
+              </mat-slide-toggle>
+            </div>
+            <div *ngIf="!showAll" style="text-align: center;">
+              <button mat-button color="primary" (click)="prevPage()" [disabled]="page === 1">
+                <mat-icon>arrow_left</mat-icon>
+              </button>
+              <span> &nbsp; Halaman {{ page }} dari {{ totalPages }} &nbsp;</span>
+              <button mat-button color="primary" (click)="nextPage()" [disabled]="page === totalPages">
+                <mat-icon>arrow_right</mat-icon>
+              </button>
+            </div>
+            <div *ngIf="!showAll">
+              <span>Lompat ke halaman: </span>
               <mat-form-field style="max-width:60px">
-                  <input matInput type="number" [ngModel]="page | number"
-                    (ngModelChange)="page=$event" pattern="-?[0-9]*(\.[0-9]+)?">
-                  <mat-error>Masukkan angka!</mat-error>
-                </mat-form-field>
+                <input matInput type="number" [ngModel]="page | number" (ngModelChange)="page=$event"
+                  pattern="-?[0-9]*(\.[0-9]+)?">
+                <mat-error>Masukkan angka!</mat-error>
+              </mat-form-field>
+            </div>
           </div>
-        </div>
 
 
-        <div *ngIf="isLoaded" fxFlex>
-          <h4>Pengaturan Zoom</h4>
-          <div *ngIf="isLoaded" style="text-align: center;">
-            <button (click)="incrementZoom(-0.1)" mat-button type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                <line x1="8" y1="11" x2="14" y2="11"></line>
-              </svg>
-            </button>
+          <div *ngIf="isLoaded" fxFlex>
+            <h4>Pengaturan Zoom</h4>
+            <div *ngIf="isLoaded" style="text-align: center;">
+              <button (click)="incrementZoom(-0.1)" mat-button type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+              </button>
 
-            <mat-form-field style="max-width:60px">
-              <input matInput type="number" placeholder="Atur Zoom" [ngModel]="zoomLevel | number"
-                (ngModelChange)="zoomLevel=$event" pattern="-?[0-9]*(\.[0-9]+)?">
-              <mat-error>Masukkan angka!</mat-error>
-            </mat-form-field>
+              <mat-form-field style="max-width:60px">
+                <input matInput type="number" placeholder="Atur Zoom" [ngModel]="zoomLevel | number"
+                  (ngModelChange)="zoomLevel=$event" pattern="-?[0-9]*(\.[0-9]+)?">
+                <mat-error>Masukkan angka!</mat-error>
+              </mat-form-field>
 
-            <button (click)="incrementZoom(0.1)" mat-button type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                <line x1="11" y1="8" x2="11" y2="14"></line>
-                <line x1="8" y1="11" x2="14" y2="11"></line>
-              </svg>
-            </button>
+              <button (click)="incrementZoom(0.1)" mat-button type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+              </button>
+            </div>
           </div>
+
+
+
+          <div *ngIf="isLoaded" fxFlex fxFlexAlign="center">
+            <a type="button" download="{{nama}}.pdf" mat-raised-button color="primary" target="_blank" [href]="src">
+              <mat-icon>cloud_download</mat-icon> Unduh Dokumen (PDF)
+            </a>
+
+          </div>
+
         </div>
-
-
-        <div *ngIf="isLoaded" fxFlex fxFlexAlign="center">
-          <a type="button" download="{{nama}}.pdf" mat-raised-button color="primary" target="_blank" [href]="src">
-            <mat-icon>cloud_download</mat-icon> Unduh Dokumen (PDF)
-          </a>
-
-        </div>
-
-      </div>
-
+      </perfect-scrollbar>
     </mat-card>
   </div>
 
-  <div fxFlex>
-    <div class="pdf-container" style="padding: 10px; max-width:750px">
-      <pdf-viewer (error)="onError($event)" [src]="src" [original-size]="false" [fit-to-page]="true" [zoom]="zoomLevel"
-        [render-text]="true" [show-all]="showAll" [page]="page" (after-load-complete)="afterLoadComplete($event)"
-        style="display: block;">
-      </pdf-viewer>
 
+
+  <div fxFlex fxLayoutAlign="center center">
+    <mat-card *ngIf="!isLoaded">
+      <div style="padding:15px" fxLayoutAlign="center center" class="loading-screen" 
+        fxLayout="column">
+
+        <div fxFlex="20">
+          <span class="mat-typography" *ngIf="!progressData"> Pilih salah satu dokumen dari menu di sebelah kiri </span>
+        </div>
+        <div fxFlex *ngIf="!isLoaded && progressData" id="progress">
+          <!--div-- class="bg">
+            <div class="bar" [style.width]="percentLoad + '%'"></div>
+          </div-->
+          <h3>Memuat dokumen: {{ percentLoad | number }} MB</h3>
+        </div>
+        <div fxFlex fxFlexAlign="center">
+          <img src="/assets/images/city.webp" style="max-width: 200px; text-align: center;">
+        </div>
+        
+      </div>
+    </mat-card >
+
+    <div  class="pdf-container" style="padding: 10px; max-width:750px">
+      <pdf-viewer (error)="onError($event)" [src]="src" [original-size]="false" [fit-to-page]="true" [zoom]="zoomLevel"
+        [render-text]="true" [show-all]="showAll" [page]="page" (on-progress)="onProgress($event)"
+        (after-load-complete)="afterLoadComplete($event)" style="display: block;">
+      </pdf-viewer>
     </div>
   </div>
 

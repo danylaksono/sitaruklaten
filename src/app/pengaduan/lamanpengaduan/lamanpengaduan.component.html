@@ -49,7 +49,7 @@
               </a>
             </div>
             <mat-form-field class="example-full-width">
-              <textarea [disabled] rows="5" matInput formControlName="lokasi" name="lokasi" [ngModel]="lokasi | json"
+              <textarea [readonly]="true" rows="5" matInput formControlName="lokasi" name="lokasi" [ngModel]="lokasi | json"
                 placeholder="Lokasi"></textarea>
             </mat-form-field>
           </div>

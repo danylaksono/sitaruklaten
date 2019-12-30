@@ -1,6 +1,6 @@
 <div class="dialogTitle" mat-dialog-title color="primary" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
   <span cdkDragHandle>
-    <small> Zona Existing: {{atribut}} </small>
+    <small> Keterangan Zona </small>
     
   </span>
   <span class="example-spacer"></span>
@@ -30,5 +30,9 @@
     <tr style="display: none" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <div>
+    <p> Lihat <a routerLink="/peraturan">Ketentuan Umum Peraturan Zonasi </a> </p>
+  </div>
 
 </mat-dialog-content>

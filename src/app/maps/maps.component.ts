@@ -463,7 +463,9 @@ export class MapsComponent implements OnInit, AfterViewInit {
   disclaimer() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
+    dialogConfig.autoFocus = false;
+    dialogConfig.maxHeight= '90vh';
+    dialogConfig.maxWidth= '90vh';
     dialogConfig.data = {
       id: 1,
       title: 'Jenis Kegiatan',

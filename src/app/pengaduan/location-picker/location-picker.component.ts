@@ -6,12 +6,18 @@ import { MAT_DIALOG_DEFAULT_OPTIONS, MAT_DIALOG_DATA, MatDialogRef } from '@angu
 
 import OlMap from 'ol/Map';
 import XYZ from 'ol/source/XYZ';
+import * as Extent from 'ol/Extent';
 import OlTileLayer from 'ol/layer/Tile';
+import OlVectorLayer from 'ol/layer/Vector';
 import OlView from 'ol/View';
+import SearchNominatim from 'ol-ext/control/SearchNominatim';
 import OSM from 'ol/source/OSM';
 import * as Control from 'ol/control';
 import { transform, getTransform, get, fromLonLat, toLonLat } from 'ol/proj';
 //import { MatDatepickerModule } from '@angular/material/datepicker';
+import OlGeoJSON from 'ol/format/GeoJSON';
+import { Fill, Circle, Stroke, Style } from 'ol/style';
+import OlVectorSource from 'ol/source/Vector';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Overlay from 'ol/Overlay';
@@ -42,6 +48,8 @@ export class LocationPickerComponent implements OnInit {
   showMarker: boolean;
   mark: Overlay;
 
+  sLayer: OlVectorLayer;
+
   lintang: Number;
   bujur: Number;
 
@@ -63,7 +71,7 @@ export class LocationPickerComponent implements OnInit {
       target: 'map2',
       controls: Control.defaults({
         rotate: false,
-        zoom: false
+        zoom: true
       }),
       layers: [
         new OlTileLayer({
@@ -83,6 +91,84 @@ export class LocationPickerComponent implements OnInit {
     });
 
   this.map.on('click', this.getInfoCallback);
+
+
+    // Search control
+    let search = new SearchNominatim(
+      {	//target: $(".options").get(0),
+        polygon: true,
+        reverse: true,
+        position: true	// Search, with priority to geo position
+      });
+
+
+
+    this.map.addControl(search);
+    // Move to the position on selection in the control list
+    search.on('select', (e) => {
+
+      if (this.sLayer) {
+        this.map.removeLayer(this.sLayer);
+      }
+
+      // Current selection
+      this.sLayer = new OlVectorLayer({
+        //@ts-ignore
+        title: 'Hasil Pencarian',
+        source: new OlVectorSource(),
+        style: new Style({
+          image: new Circle({
+            radius: 5,
+            stroke: new Stroke({
+              color: 'rgb(255,165,0)',
+              width: 3
+            }),
+            fill: new Fill({
+              color: 'rgba(255,165,0,.3)'
+            })
+          }),
+          stroke: new Stroke({
+            color: 'rgb(255,165,0)',
+            width: 3
+          }),
+          fill: new Fill({
+            color: 'rgba(255,165,0,.3)'
+          })
+        })
+      });
+      this.map.addLayer(this.sLayer);
+      this.map.render();
+      //console.log(e);
+      this.sLayer.getSource().clear();
+      // Check if we get a geojson to describe the search
+      if (e.search.geojson) {
+        var format = new OlGeoJSON();
+        var f = format.readFeature(e.search.geojson, { dataProjection: "EPSG:4326", featureProjection: this.map.getView().getProjection() });
+        this.sLayer.getSource().addFeature(f);
+        var view = this.map.getView();
+        var resolution = view.getResolutionForExtent(f.getGeometry().getExtent(), this.map.getSize());
+        var zoom = view.getZoomForResolution(resolution);
+        var center = Extent.getCenter(f.getGeometry().getExtent());
+        // redraw before zoom
+        setTimeout(function () {
+          view.animate({
+            center: center,
+            zoom: Math.min(zoom, 16)
+          });
+        }, 100);
+      }
+      else {
+        this.map.getView().animate({
+          center: e.coordinate,
+          zoom: Math.max(this.map.getView().getZoom(), 16)
+        });
+      }
+    });
+
+
+
+
+
 
   } //onInint
 
