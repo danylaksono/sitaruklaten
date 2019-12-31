@@ -83,8 +83,8 @@ export class UnduhperaturanComponent implements OnInit {
       },
       {
         nama: 'Perda No 11 Tahun 2011',
-        //fileURL: '/assets/pdf/PERDA11TAHUN2011RTRWKLATEN.pdf' 
-        fileURL: 'http://geoportal.klatenkab.go.id/assets/pdf/PERDA11TAHUN2011RTRWKLATEN.pdf'
+        fileURL: '/assets/pdf/PERDA11TAHUN2011RTRWKLATEN.pdf' 
+        //fileURL: 'http://geoportal.klatenkab.go.id/assets/pdf/PERDA11TAHUN2011RTRWKLATEN.pdf'
       }
     ];
 

@@ -17,19 +17,33 @@
 
   <mat-nav-list (sidenavToggle)="printEvent($event)">
     <h3 mat-subheader>Tautan</h3>
-    <a mat-list-item (click)="toggleActive($event)" routerLink="/">
+    <a data-step="2" 
+    data-intro="Menu ini untuk kembali ke halaman depan" 
+    data-position='right' 
+    mat-list-item (click)="toggleActive($event)" routerLink="/">
       <mat-icon> home </mat-icon>
       <p mat-line> Halaman Depan</p>
     </a>
-    <a mat-list-item (click)="toggleActive($event)" routerLink="/home">
+    <a data-step="3" 
+    data-intro="Menu ini untuk membuka halaman peta" 
+    data-position='right'
+    
+    mat-list-item (click)="toggleActive($event)" routerLink="/home">
       <mat-icon> map </mat-icon>
       <p mat-line> Peta</p>
     </a>
-    <a mat-list-item (click)="toggleActive($event)" routerLink="/peraturan">
-      <mat-icon> get_app </mat-icon>
-      <p mat-line> Unduh Peraturan</p>
+    <a data-step="4" 
+    data-intro="Gunakan untuk melihat peraturan zonasi tata ruang" 
+    data-position='right'
+    
+    mat-list-item (click)="toggleActive($event)" routerLink="/peraturan">
+      <mat-icon> menu_book </mat-icon>
+      <p mat-line> Peraturan Zonasi</p>
     </a>
-    <a mat-list-item (click)="toggleActive($event)" routerLink="/pengaduan">
+    <a data-step="5" 
+    data-intro="Buat laporan untuk ditindak-lanjuti oleh Dinas PUPR Kabupaten Klaten" 
+    data-position='right'
+    mat-list-item (click)="toggleActive($event)" routerLink="/pengaduan">
       <mat-icon> record_voice_over </mat-icon>
       <p mat-line> Pengaduan</p>
     </a>

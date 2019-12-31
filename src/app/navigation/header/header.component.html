@@ -1,7 +1,7 @@
 <mat-toolbar style="max-height:50px" color="primary">
-  <span>
-    <button mat-icon-button (click)="onClicked()">
-      <mat-icon>menu</mat-icon>
+  <span  >
+    <button  mat-icon-button (click)="toggleSidenav()">
+      <mat-icon data-step="1" data-intro="Klik ini untuk membuka menu utama" data-position='auto'>menu</mat-icon>
     </button>
   </span>
   <span>
@@ -15,6 +15,16 @@
   <button  matTooltip="Disclaimer"
    mat-icon-button (click)="disclaimer()">
     <mat-icon  class="unlogged-icon" aria-hidden="false" aria-label="user verified icon">policy
+    </mat-icon>
+  </button>
+
+  <button 
+  data-step="8" 
+    data-intro="Klik pada tombol ini untuk menampilkan bantuan Interaktif" 
+    data-position='auto'
+  matTooltip="Bantuan Interaktif"
+   mat-icon-button >
+    <mat-icon  class="unlogged-icon" (click)="showHelp()" aria-hidden="false" aria-label="user verified icon">help
     </mat-icon>
   </button>
 

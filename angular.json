@@ -30,7 +30,9 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/ol/ol.css",
               "src/styles.scss",
-              "node_modules/intro.js/introjs.css"
+              "node_modules/intro.js/introjs.css",
+              "node_modules/intro.js/themes/introjs-nassim.css"
+
             ],
             "scripts": [
               "node_modules/intro.js/intro.js"

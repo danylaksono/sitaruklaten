@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     this.auth.signIn(credentials);
     //const cookieExist: boolean = this.cookie.check('currentUser');
     //if (cookieExist){
-      this.router.navigateByUrl('/home');
+      //this.router.navigateByUrl('/home');
     //};
   }
 

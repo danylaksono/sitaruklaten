@@ -3,13 +3,21 @@
 <div id="sidebar" class="sidebar collapsed">
   <!-- Nav tabs -->
   <div [perfectScrollbar]  class="sidebar-tabs">
-    <ul role="tablist">
-      <li><a matTooltip="Layer Peta" href="#home" role="tab"><i class="fa fa-map"></i></a></li>
-      <li><a matTooltip="Legenda" href="#profile" role="tab"><i class="fa fa-image"></i></a></li>
+    <ul data-step="6" 
+    data-intro="Bagian ini untuk melakukan pengaturan layer peta, legenda, dan pencarian koordinat" 
+    data-position='auto'
+    role="tablist">
+      <li >
+        <a matTooltip="Layer Peta" href="#home" role="tab"><i class="fa fa-map"></i></a>
+      </li>
+      <li ><a matTooltip="Legenda" href="#profile" role="tab"><i class="fa fa-image"></i></a></li>
       <li><a (click)="openDialogCari()" matTooltip="Cari Koordinat" role="tab"><i class="fa fa-map-marker"></i></a></li>
     </ul>
 
-    <ul role="tablist">
+    <ul data-step="7" 
+    data-intro="Menu ini untuk menampilkan mode yang sedang aktif. Mode edit hanya dapat digunakan oleh administrator" 
+    data-position='auto'
+    role="tablist">
         <li><a matTooltip="Hapus seleksi" (click)="clearSelected()" target="_blank"><i class="fa fa-eraser"></i></a></li>
         <li><a [style.background-color] = "editMode ? 'transparent' : 'lightblue'" (click)="activateInfoMode()" matTooltip="Mode Info" role="tab"><i class="fa fa-info-circle"></i></a></li>
         <li *ngIf="(isLoggedIn | async)"><a [style.background-color] = "editMode ? 'lightblue' : 'transparent'" (click)="activateEditMode()"  matTooltip="Mode Edit" role="tab"><i class="fa fa-pencil"></i></a></li>

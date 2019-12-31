@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { SidenavService } from 'src/app/service/sidenav.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgModule } from '@angular/core';
 
+
+
 import { MaterialModule } from '../material/material.module';
+import { MatSidenav } from '@angular/material';
 
 
 @Component({
@@ -19,10 +23,16 @@ import { MaterialModule } from '../material/material.module';
 
 
 export class MainViewComponent implements OnInit {
+  
+  @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav;
 
-  constructor() { }
+  
+  constructor(
+    private sidenavService: SidenavService
+  ) { }
 
   ngOnInit() {
+    this.sidenavService.setSidenav(this.sidenav);
   }
 
 }

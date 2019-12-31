@@ -256,7 +256,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     });
 
     var disclaim = this.cookie.get('disclaimer');
-    console.log(disclaim);
+    //console.log(disclaim);
     if(!disclaim) {
       this.disclaimer();
     }

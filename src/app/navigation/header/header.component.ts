@@ -6,9 +6,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule, } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DisclaimerComponent } from 'src/app/disclaimer/disclaimer.component';
+import { SidenavService } from 'src/app/service/sidenav.service';
+
+import * as introJs from 'intro.js/intro.js';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +28,7 @@ import { DisclaimerComponent } from 'src/app/disclaimer/disclaimer.component';
 
 export class HeaderComponent implements OnInit {
 
-  isLoggedIn : Observable<boolean>;
+  isLoggedIn: Observable<boolean>;
   currentUser: String;
 
   @Output() public sidenavToggle = new EventEmitter();
@@ -34,8 +37,9 @@ export class HeaderComponent implements OnInit {
     private cookie: CookieService,
     public dialog: MatDialog,
     private auth: AuthService,
-    private router: Router
-  ) { 
+    private router: Router,
+    private sidenav: SidenavService
+  ) {
     this.isLoggedIn = auth.isLoggedIn();
   }
 
@@ -57,6 +61,10 @@ export class HeaderComponent implements OnInit {
         this.router.navigateByUrl('');
       }
     });
+  }
+
+  toggleSidenav() {
+    this.sidenav.toggle();
   }
 
   //move to service on refactoring
@@ -81,6 +89,26 @@ export class HeaderComponent implements OnInit {
     this.sidenavToggle.emit();
   }
 
+  showHelp(){
+    
+    introJs()
+    .onchange((element) => {  
+      //console.log(element);
+      switch(element.getAttribute("data-step")){
+        case "1": this.sidenav.open(); break;
+        case "2": this.sidenav.open(); break;
+      }
+  })
+  .setOptions({
+    exitOnOverlayClick: 'false',
+    skipLabel: 'Lewati', nextLabel: 'Lanjut',  prevLabel: 'Sebelumnya', doneLabel: 'Selesai'
+
+  })
+  .start();
+
+    
+  }
+
   onClicked() {
     //console.log('clicked');
     this.sidenavToggle.emit();
@@ -88,10 +116,12 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this.auth.logOut();
-    
+
   }
 
   ngOnInit() {
+
+
   }
 
 

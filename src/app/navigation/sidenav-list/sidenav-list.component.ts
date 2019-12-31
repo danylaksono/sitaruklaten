@@ -1,8 +1,10 @@
 import { AuthService } from './../../service/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
 import { Observable } from 'rxjs';
+import { MatSidenav } from '@angular/material';
+import { SidenavService } from 'src/app/service/sidenav.service';
 
 
 @Component({
@@ -21,6 +23,8 @@ import { Observable } from 'rxjs';
 
 export class SidenavListComponent implements OnInit {
 
+  
+
   element: HTMLElement;
   isExpanded = false;
 
@@ -29,7 +33,8 @@ export class SidenavListComponent implements OnInit {
  
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    private sidenavService: SidenavService
   ) { 
     this.isLoggedIn = auth.isLoggedIn();
   }
@@ -51,7 +56,8 @@ export class SidenavListComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+   //introJs().start(); 
+   
   }
 
 }

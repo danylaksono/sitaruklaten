@@ -1,3 +1,4 @@
+import { SidenavService } from './service/sidenav.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -116,6 +117,7 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
   ],
   providers: [
     CookieService,
+    SidenavService,
     MatDatepickerModule
   ],
   bootstrap: [AppComponent]
