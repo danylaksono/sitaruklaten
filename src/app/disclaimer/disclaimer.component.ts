@@ -39,7 +39,12 @@ export class DisclaimerComponent implements OnInit {
 
   
   closeDialog() { 
-    introJs().goToStepNumber(8).start();
+    introJs().goToStepNumber(8).setOptions({
+      exitOnOverlayClick: 'false',
+      skipLabel: 'Lewati', nextLabel: 'Lanjut',  prevLabel: 'Sebelumnya', doneLabel: 'Selesai'
+  
+    })
+    .start();
     var disclaim = this.cookie.get('disclaimer');
     if(!disclaim) {
       this.cookie.set('disclaimer', 'setuju', 0.05);
