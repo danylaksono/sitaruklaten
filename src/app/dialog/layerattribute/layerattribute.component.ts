@@ -50,7 +50,7 @@ export class LayerattributeComponent implements OnInit {
     const ELEMENT_DATA: dataPolaBidang[] = [
       {atribut: 'Desa', keterangan: data.atribut.DESA},
       {atribut: 'Kecamatan', keterangan: data.atribut.KECAMATAN},
-      {atribut: 'Existing', keterangan: data.atribut.EXISTING},
+      
       {atribut: 'Rencana', keterangan: data.atribut.RENCANA},
       {atribut: 'Luas (ha)', keterangan: data.atribut.HECTARES.toFixed(2) },
     ];

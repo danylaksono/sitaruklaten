@@ -133,6 +133,20 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
+        title: 'Pola Ruang - Perpres',
+        maxResolution: 10,       
+        visible: true,
+        opacity: 0.5,
+        source: new SourceWMS({
+          url: this.linkGeoserver, 
+          params: {'LAYERS': 'sitaru:pola_ruang_perpres', 'TILED': true},
+          //params: {'LAYERS': 'klaten:Ibukota_desalurah', 'TILED': true},
+          serverType: 'geoserver',
+          transition: 0
+        })
+      }),
+      new LayerTile({
+        //@ts-ignore
         title: 'Pusat Pemerintahan',     
         maxResolution: 5,       
         visible: true,

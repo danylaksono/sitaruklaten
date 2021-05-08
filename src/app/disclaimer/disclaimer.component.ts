@@ -40,8 +40,9 @@ export class DisclaimerComponent implements OnInit {
   
   closeDialog() { 
     introJs().goToStepNumber(8).setOptions({
-      exitOnOverlayClick: 'false',
-      skipLabel: 'Lewati', nextLabel: 'Lanjut',  prevLabel: 'Sebelumnya', doneLabel: 'Selesai'
+      exitOnOverlayClick: 'true',
+      skipLabel: 'Lewati', nextLabel: 'Lanjut',  prevLabel: 'Sebelumnya', doneLabel: 'Selesai',
+      hidePrev: 'true', hideNext: 'true', showStepNumbers:'false', showButtons:'false'
   
     })
     .start();

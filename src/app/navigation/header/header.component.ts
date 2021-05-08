@@ -85,9 +85,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  onToggleSidenav() {
-    this.sidenavToggle.emit();
-  }
+  //onToggleSidenav() {
+  //  this.sidenavToggle.emit();
+  //}
 
   showHelp(){
     
@@ -102,7 +102,6 @@ export class HeaderComponent implements OnInit {
   .setOptions({
     exitOnOverlayClick: 'false',
     skipLabel: 'Lewati', nextLabel: 'Lanjut',  prevLabel: 'Sebelumnya', doneLabel: 'Selesai'
-
   })
   .start();
 

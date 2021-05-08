@@ -39,8 +39,8 @@ export class LamanpengaduanComponent implements OnInit {
   };
   tanggal: Date;
 
-  //SERVER_URL = "http://103.108.187.217:3000/api/laporans";
-  SERVER_URL = "http://localhost:3000/api/laporans";
+  SERVER_URL = "http://103.108.187.217/api/laporans";
+  //SERVER_URL = "http://localhost:3000/api/laporans";
   form: FormGroup;
 
   map: OlMap;

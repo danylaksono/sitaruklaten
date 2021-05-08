@@ -270,7 +270,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
 
     var view = this.map.getView();
     view.on('change:resolution', function(evt) {
-        console.log("resolution", view.getResolution());
+        //console.log("resolution", view.getResolution());
     });
 
 
@@ -409,7 +409,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(PencarianComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       //console.log("Dialog closed")
-      console.log('hasil lengkap', result);
+      //console.log('hasil lengkap', result);
 
       if (result.bujur && result.lintang) {
         this.zoomToLatLng(result.lintang, result.bujur);
@@ -436,7 +436,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     proj4.defs(UTM49S, '+proj=utm +zone=49 +south +datum=WGS84 +units=m +no_defs');
     register(proj4);
     if (!get(UTM49S)) {
-      console.error("Failed to register projection in OpenLayers");
+      //console.error("Failed to register projection in OpenLayers");
     } else {
       //console.log(get(UTM49S));
     }
@@ -493,7 +493,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(CekizinComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       //console.log("Dialog closed")
-      console.log(result)
+      //console.log(result)
     });
   }
 

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
+    
     private auth: AuthService) { }
 
 
@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit {
 
   signIn() {
     let credentials = {
-      email: this.signInEmail,
-      password: this.signInPassword
+      "email": this.signInEmail,
+      "password": this.signInPassword
     }
     this.auth.signIn(credentials);
     //const cookieExist: boolean = this.cookie.check('currentUser');
     //if (cookieExist){
-      //this.router.navigateByUrl('/home');
+      //router forwarding here
     //};
   }
 

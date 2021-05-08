@@ -23,12 +23,13 @@ export class DataLaporanService {
     var token = this.cookie.get('currentUser');
     let params = new HttpParams().set('access_token', token);
 
-    return this.http.get<any[]>("http://localhost:3000/api/laporans", { params })
+    //const authUrl='http://103.108.187.217/api/penggunas/login';
+    return this.http.get<any[]>("http://103.108.187.217/api/laporans", { params })
       //.subscribe((res) => {
       .pipe(
         tap(data => {
           this.daftarLaporan = data;
-          console.log(data);
+          //console.log(data);
         })
       )
 
