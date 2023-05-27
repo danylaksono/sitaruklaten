@@ -27,6 +27,7 @@ export class OverlaylayerService {
       new LayerTile({
         //@ts-ignore
         title: 'Batas Desa',
+        maxResolution: 100,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -40,6 +41,7 @@ export class OverlaylayerService {
       new LayerTile({
         //@ts-ignore
         title: 'Jalan Kereta Api',
+        maxResolution: 5,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -52,7 +54,8 @@ export class OverlaylayerService {
 
       new LayerTile({
         //@ts-ignore
-        title: 'Jaringan Energi',       
+        title: 'Jaringan Energi',
+        maxResolution: 5,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -64,7 +67,8 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
-        title: 'Jaringan Jalan',       
+        title: 'Jaringan Jalan',
+        maxResolution: 10,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -76,7 +80,8 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
-        title: 'Kawasan Rawan Bencana',       
+        title: 'Kawasan Rawan Bencana',  
+        maxResolution: 10,            
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -88,7 +93,8 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
-        title: 'Kawasan Strategis Prambanan',       
+        title: 'Kawasan Strategis Prambanan',
+        maxResolution: 7,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -100,7 +106,8 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
-        title: 'Persampahan',       
+        title: 'Persampahan',
+        maxResolution: 5,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -112,7 +119,8 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
-        title: 'Pola Ruang',       
+        title: 'Pola Ruang',
+        maxResolution: 10,       
         visible: true,
         opacity: 0.5,
         source: new SourceWMS({
@@ -125,7 +133,22 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
-        title: 'Pusat Pemerintahan',       
+        title: 'Pola Ruang - Perpres',
+        maxResolution: 10,       
+        visible: true,
+        opacity: 0.5,
+        source: new SourceWMS({
+          url: this.linkGeoserver, 
+          params: {'LAYERS': 'sitaru:pola_ruang_perpres', 'TILED': true},
+          //params: {'LAYERS': 'klaten:Ibukota_desalurah', 'TILED': true},
+          serverType: 'geoserver',
+          transition: 0
+        })
+      }),
+      new LayerTile({
+        //@ts-ignore
+        title: 'Pusat Pemerintahan',     
+        maxResolution: 5,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -137,7 +160,8 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
-        title: 'Rawa Jombor',       
+        title: 'Rawa Jombor',
+        maxResolution: 5,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -149,7 +173,8 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
-        title: 'Sistem Pusat Kegiatan',       
+        title: 'Sistem Pusat Kegiatan',
+        maxResolution: 5,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 
@@ -161,7 +186,8 @@ export class OverlaylayerService {
       }),
       new LayerTile({
         //@ts-ignore
-        title: 'Sungai',       
+        title: 'Sungai',
+        maxResolution: 10,       
         visible: true,
         source: new SourceWMS({
           url: this.linkGeoserver, 

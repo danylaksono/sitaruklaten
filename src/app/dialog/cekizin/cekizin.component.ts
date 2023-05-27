@@ -1,5 +1,5 @@
-import { CekintensitasService } from './../../service/cekintensitas.service';
-import { DataitbxService } from './../../service/dataitbx.service';
+//import { CekintensitasService } from './../../service/cekintensitas.service';
+//import { DataitbxService } from './../../service/dataitbx.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
@@ -53,8 +53,8 @@ export class CekizinComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<CekizinComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private itbx: DataitbxService,
-    private cekintensitas: CekintensitasService
+    //private itbx: DataitbxService,
+    //private cekintensitas: CekintensitasService
   ) {
     this.modalTitle = data.title;
     this.modalArticle = data.article;
@@ -70,11 +70,13 @@ export class CekizinComponent implements OnInit {
     this.showKesimpulan = true;
     //console.log(kegiatan);
     //console.log(this.itbx.getITBX(this.rdtr.kode, kegiatan));
+    /*
     this.itbx.getITBX(this.rdtr.kode, kegiatan)
       .subscribe((data) =>
         //console.log(data[0].skrk[this.rdtr.kode]),
         this.hasilITBX(data[0].skrk[this.rdtr.kode])
       )
+      */
   }
 
   resetPencarian() {

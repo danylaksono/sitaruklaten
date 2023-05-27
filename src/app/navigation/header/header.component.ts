@@ -6,8 +6,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule, } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { DisclaimerComponent } from 'src/app/disclaimer/disclaimer.component';
+import { SidenavService } from 'src/app/service/sidenav.service';
+
+import * as introJs from 'intro.js/intro.js';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +28,7 @@ import { Observable } from 'rxjs';
 
 export class HeaderComponent implements OnInit {
 
-  isLoggedIn : Observable<boolean>;
+  isLoggedIn: Observable<boolean>;
   currentUser: String;
 
   @Output() public sidenavToggle = new EventEmitter();
@@ -33,8 +37,9 @@ export class HeaderComponent implements OnInit {
     private cookie: CookieService,
     public dialog: MatDialog,
     private auth: AuthService,
-    private router: Router
-  ) { 
+    private router: Router,
+    private sidenav: SidenavService
+  ) {
     this.isLoggedIn = auth.isLoggedIn();
   }
 
@@ -46,7 +51,7 @@ export class HeaderComponent implements OnInit {
     dialogConfig.data = {
       id: 1,
       title: 'Log Out Admin',
-      article: 'Keluar dari Mode Administator?'
+      article: 'Keluar dari Mode Administrator?'
 
     };
     const dialogRef = this.dialog.open(YesnoComponent, dialogConfig);
@@ -58,8 +63,49 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  onToggleSidenav() {
-    this.sidenavToggle.emit();
+  toggleSidenav() {
+    this.sidenav.toggle();
+  }
+
+  //move to service on refactoring
+  disclaimer() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      title: 'Jenis Kegiatan',
+      article: 'the article',
+    };
+    const dialogRef = this.dialog.open(DisclaimerComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+
+      //console.log("Dialog closed")
+      //  console.log(result)
+    });
+  }
+
+  //onToggleSidenav() {
+  //  this.sidenavToggle.emit();
+  //}
+
+  showHelp(){
+    
+    introJs()
+    .onchange((element) => {  
+      //console.log(element);
+      switch(element.getAttribute("data-step")){
+        case "1": this.sidenav.open(); break;
+        case "2": this.sidenav.open(); break;
+      }
+  })
+  .setOptions({
+    exitOnOverlayClick: 'false',
+    skipLabel: 'Lewati', nextLabel: 'Lanjut',  prevLabel: 'Sebelumnya', doneLabel: 'Selesai'
+  })
+  .start();
+
+    
   }
 
   onClicked() {
@@ -69,10 +115,12 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this.auth.logOut();
-    
+
   }
 
   ngOnInit() {
+
+
   }
 
 

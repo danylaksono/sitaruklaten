@@ -17,10 +17,12 @@
       <mat-tab label="Koordinat Lintang-Bujur">
         <div class="form-container">
           <mat-form-field>
-            <input matInput [(ngModel)]="lintang" name="lintang" placeholder="Koordinat Lintang">
+            <input matInput [(ngModel)]="lintang" name="lintang" placeholder="Koordinat Lintang (Desimal)">
+            <mat-hint align="end"> Contoh: -7.704939</mat-hint>
           </mat-form-field>
           <mat-form-field>
-            <input matInput [(ngModel)]="bujur" name="bujur" placeholder="Koordinat Bujur">
+            <input matInput [(ngModel)]="bujur" name="bujur" placeholder="Koordinat Bujur (Desimal)">
+            <mat-hint align="end"> Contoh: 110.601764</mat-hint>
           </mat-form-field>
         </div>
 
@@ -28,15 +30,17 @@
       <mat-tab label="Koordinat UTM">
         <div class="form-container">
           <mat-form-field>
-            <input matInput [(ngModel)]="xUTM" name="xutm" placeholder="Koordinat-X">
+            <input matInput [(ngModel)]="xUTM" name="xutm" placeholder="Koordinat-X UTM">
+            <mat-hint align="end"> Contoh: 456083 </mat-hint>
           </mat-form-field>
           <mat-form-field>
-            <input matInput [(ngModel)]="yUTM" name="yutm" placeholder="Koordinat-Y">
+            <input matInput [(ngModel)]="yUTM" name="yutm" placeholder="Koordinat-Y UTM">
+            <mat-hint align="end"> Contoh: 9148301 </mat-hint>
           </mat-form-field>
         </div>
       </mat-tab>
     </mat-tab-group>
-    <div fxFlexAlign="end">
+    <div fxFlexAlign="end" style="padding-top:20px">
         <button type="submit" mat-raised-button color="primary" (click)="closeDialog(lintang, bujur, xUTM, yUTM)">Cari Lokasi</button>
     </div>
     

@@ -29,7 +29,11 @@
               <input matInput [(ngModel)]="signInEmail" name="signInEmail" type="text" placeholder="email">
             </mat-form-field>
             <mat-form-field class="example-full-width">
-              <input matInput [(ngModel)]="signInPassword" name="signInPassword" type="password" placeholder="password">
+              <input matInput [(ngModel)]="signInPassword" name="signInPassword"  [type]="hide ? 'password' : 'text'" placeholder="password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
             </mat-form-field>
 
             <!-->mat-form-field class="example-full-width">

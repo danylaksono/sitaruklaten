@@ -1,7 +1,9 @@
+import { WarningSnackbarService } from './../dialog/warning-snackbar.service';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 //import { map } from 'rxjs/operators';
 
 
@@ -18,6 +20,8 @@ export class AuthService {
   @Output() loggedin = new EventEmitter();
 
   constructor(
+    private warning: WarningSnackbarService,
+    private router: Router,
     private http: HttpClient,
     private cookie: CookieService
   ) { }
@@ -34,15 +38,25 @@ export class AuthService {
   }
 
   signIn(credentials) {
-    const authUrl='https://sitaru-arsip.jogjakota.go.id/auth/local';
+    const authUrl='http://103.108.187.217/api/penggunas/login';
+    //const authUrl='http://localhost:3000/api/penggunas/login';
     this.http.post(authUrl, credentials).subscribe((res: any) => {
     //this.http.post('api/auth', credentials).subscribe((res: any) => {
 
       //console.log(res);
       //this.jwt = res.token;
       //localStorage.setItem('currentUser', res.token);
-      this.cookie.set('currentUser', res.token, 0.25);
+      this.cookie.set('currentUser', res.id, 0.25);
       this.isLoggedInSubject.next(true);
+      this.router.navigateByUrl('/home');
+    },
+    
+    error => { 
+      //console.log(error);
+      this.warning.open('Password atau Nama Pengguna Salah!');
+
+    
+    
     });
   } //signin
 

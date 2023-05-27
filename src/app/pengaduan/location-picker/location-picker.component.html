@@ -1,0 +1,24 @@
+<div class="container">
+  <p class="mat-typography">
+    <i>
+      Klik untuk menandai lokasi, kemudian klik Simpan
+    </i>
+  </p>
+  <mat-form-field class="example-full-width">
+    <input [readonly]="true" matInput [(ngModel)]="lintang" name="lintang" type="text" placeholder="Lintang">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input [readonly]="true" matInput [(ngModel)]="bujur" name="bujur" type="text" placeholder="Bujur">
+  </mat-form-field>
+  <button mat-raised-button (click)="closeDialog(lintang, bujur)" color="primary">
+    <mat-icon>save</mat-icon>
+    Simpan
+  </button>
+  <div #pointermap id="map2" class="map sidebar-map"></div>
+</div>
+
+
+<div [hidden]="!showMarker" id="location-marker" class="marker">
+  <img width="50px" src="../../assets/images/flag.png">
+  <span class="pulse"></span>
+</div>

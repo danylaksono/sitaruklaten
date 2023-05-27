@@ -1,3 +1,4 @@
+import { DisclaimerComponent } from './../disclaimer/disclaimer.component';
 //Angular Core
 import {
   Component,
@@ -25,12 +26,12 @@ import * as Control from 'ol/control';
 import { Sidebar } from 'ol/control.js';
 import SearchNominatim from 'ol-ext/control/SearchNominatim';
 import LayerSwitcher from 'ol-ext/control/LayerSwitcher';
-import { transform, getTransform, get, fromLonLat } from 'ol/proj';
+import { transform, getTransform, get, fromLonLat, toLonLat } from 'ol/proj';
 import proj4 from 'proj4';
 import OlGeoJSON from 'ol/format/GeoJSON';
 import { Fill, Circle, Stroke, Style } from 'ol/style';
 import OlVectorSource from 'ol/source/Vector';
-import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
+
 import { applyTransform } from 'ol/extent';
 
 
@@ -40,7 +41,7 @@ import { CekizinComponent } from './../dialog/cekizin/cekizin.component';
 import { BasemaplayerService } from '../service/basemaplayer.service';
 import { OverlaylayerService } from './../service/overlaylayer.service';
 import { CheckattributeService } from './../service/checkattribute.service';
-import { DataitbxService } from './../service/dataitbx.service';
+//import { DataitbxService } from './../service/dataitbx.service';
 import { DaftarkegiatanService } from '../service/daftarkegiatan.service';
 import { WarningSnackbarService } from './../dialog/warning-snackbar.service';
 import { HighlightfeatureService } from '../service/highlightfeature.service'
@@ -48,13 +49,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { PencarianlayerService } from './../service/pencarianlayer.service';
 import { AuthService } from './../service/auth.service';
 import { PencarianComponent } from './../maps/pencarian/pencarian.component';
-import { zoom } from 'ol/interaction/Interaction';
+
 
 
 
 @NgModule({
   imports: [
-    SmoothScrollModule
+    
   ]
 })
 
@@ -81,6 +82,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
   VectorLayer: OlVectorLayer;
   sLayer: OlVectorLayer;
   editLayer: OlVectorLayer;
+  mark: Overlay;
 
   linkServer: string = 'http://103.108.187.217/geoserver/';
   linkWMS: string = this.linkServer + 'sitaru/wms';
@@ -108,11 +110,11 @@ export class MapsComponent implements OnInit, AfterViewInit {
     public basemaplayers: BasemaplayerService,
     private overlaylayers: OverlaylayerService,
     private checkattribute: CheckattributeService,
-    private dataitbx: DataitbxService,
+    //private dataitbx: DataitbxService,
     private daftarkegiatan: DaftarkegiatanService,
     private dialog: MatDialog,
     private hightlight: HighlightfeatureService,
-    private smoothScroll: SmoothScrollModule,
+    
     private warning: WarningSnackbarService,
     private cookie: CookieService,
     private auth: AuthService,
@@ -253,9 +255,11 @@ export class MapsComponent implements OnInit, AfterViewInit {
       }
     });
 
-
-
-
+    var disclaim = this.cookie.get('disclaimer');
+    //console.log(disclaim);
+    if(!disclaim) {
+      this.disclaimer();
+    }
 
 
   } // oninint
@@ -263,6 +267,15 @@ export class MapsComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
+
+    var view = this.map.getView();
+    view.on('change:resolution', function(evt) {
+        //console.log("resolution", view.getResolution());
+    });
+
+
+
+
 
     var toc = this.switcher.nativeElement; // getting switcher DOM    
     //LayerSwitcher.renderPanel(this.map, toc); // should be located in ngAfterViewInit instead of onInit
@@ -286,7 +299,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
 
 
   activateInfoMode() {
-    this.clearSelected();
+    //this.clearSelected();
     this.editMode = false;
     //this.hideEditBar();
     if (this.drawInteraction) {
@@ -300,7 +313,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
   }
 
   activateEditMode() {
-    this.clearSelected();
+    //this.clearSelected();
     this.editMode = true;
     unByKey(this.clickEventKey);
     this.addInteractions();
@@ -343,6 +356,12 @@ export class MapsComponent implements OnInit, AfterViewInit {
 
 
   getInfoCallback = (evt) => {
+    this.dialog.closeAll();
+
+    
+    var lonlat = toLonLat(evt.coordinate); 
+    this.createMarkerPencarian(lonlat[1], lonlat[0]);
+    
     // test call modal
 
     var viewResolution = /** @type {number} */ (this.view.getResolution());
@@ -368,6 +387,8 @@ export class MapsComponent implements OnInit, AfterViewInit {
     this.hightlight.clearHighlight(this.map);
     this.map.removeLayer(this.sLayer);
     this.map.removeLayer(this.editLayer);
+    //this.map.removeOverlay(this.mark)
+    this.dialog.closeAll();
   }
 
 
@@ -388,10 +409,10 @@ export class MapsComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(PencarianComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       //console.log("Dialog closed")
-      console.log('hasil lengkap', result);
+      //console.log('hasil lengkap', result);
 
       if (result.bujur && result.lintang) {
-        this.zoomToLatLng(result.Y, result.X);
+        this.zoomToLatLng(result.lintang, result.bujur);
       } else if (result.xUTM && result.yUTM) {
         this.zoomToXY(result.xUTM, result.yUTM);
       }
@@ -415,9 +436,9 @@ export class MapsComponent implements OnInit, AfterViewInit {
     proj4.defs(UTM49S, '+proj=utm +zone=49 +south +datum=WGS84 +units=m +no_defs');
     register(proj4);
     if (!get(UTM49S)) {
-      console.error("Failed to register projection in OpenLayers");
+      //console.error("Failed to register projection in OpenLayers");
     } else {
-      console.log(get(UTM49S));
+      //console.log(get(UTM49S));
     }
     var newUTMProj = get(UTM49S);
     var fromLonLat = getTransform('EPSG:4326', UTM49S);
@@ -431,11 +452,31 @@ export class MapsComponent implements OnInit, AfterViewInit {
   createMarkerPencarian(lat, long) {
     this.showMarker = true;
     var pos = fromLonLat([parseFloat(long), parseFloat(lat)]);
-    var mark = new Overlay({
+    this.mark = new Overlay({
       position: pos,
       element: document.getElementById('location-marker')
     });
-    this.map.addOverlay(mark);
+    this.map.addOverlay(this.mark);
+  }
+
+  //move to service on refactoring
+  disclaimer() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = false;
+    dialogConfig.maxHeight= '90vh';
+    dialogConfig.maxWidth= '90vh';
+    dialogConfig.data = {
+      id: 1,
+      title: 'Jenis Kegiatan',
+      article: 'the article',
+    };
+    const dialogRef = this.dialog.open(DisclaimerComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+
+      //console.log("Dialog closed")
+      //  console.log(result)
+    });
   }
 
 
@@ -452,7 +493,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(CekizinComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       //console.log("Dialog closed")
-      console.log(result)
+      //console.log(result)
     });
   }
 

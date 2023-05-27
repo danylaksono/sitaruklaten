@@ -6,7 +6,6 @@ import { AuthService } from '../../service/auth.service';
 import { Observable } from 'rxjs';
 
 
-
 export interface dataPolaBidang {
   atribut: string;
   keterangan: any;
@@ -51,9 +50,9 @@ export class LayerattributeComponent implements OnInit {
     const ELEMENT_DATA: dataPolaBidang[] = [
       {atribut: 'Desa', keterangan: data.atribut.DESA},
       {atribut: 'Kecamatan', keterangan: data.atribut.KECAMATAN},
-      {atribut: 'Existing', keterangan: data.atribut.EXISTING},
+      
       {atribut: 'Rencana', keterangan: data.atribut.RENCANA},
-      {atribut: 'Luas (ha)', keterangan: data.atribut.HECTARES},
+      {atribut: 'Luas (ha)', keterangan: data.atribut.HECTARES.toFixed(2) },
     ];
 
     this.modalTitle = data.title;
@@ -63,8 +62,7 @@ export class LayerattributeComponent implements OnInit {
     this.dataSource =  ELEMENT_DATA;
 
     //console.log(data.atribut);
-    
-    
+        
   }
 
 

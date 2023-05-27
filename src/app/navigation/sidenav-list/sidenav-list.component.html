@@ -1,46 +1,62 @@
-<ng-scrollbar #scrollable 
-  track="vertical" 
-  visibility="hover" 
->
+<perfect-scrollbar>
 
-<div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10" fxLayoutWrap>
+
+
+  <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10" fxLayoutWrap>
     <div fxFlex>
-        <h3 fxLayoutAlign="center">Sistem Informasi Tata Ruang </h3>
-        <h4 fxLayoutAlign="center">Kabupaten Klaten </h4>
-         <span fxLayoutAlign="center">
-      <img class="sidebar-logo" src="../../../assets/images/logo_klaten.png">
-    </span>
-      </div>
-  <div fxLayoutAlign="center" fxFlexOffset="10">
-   
+      <h3 fxLayoutAlign="center">Sistem Informasi Tata Ruang </h3>
+      <h4 fxLayoutAlign="center">Kabupaten Klaten </h4>
+      <span fxLayoutAlign="center">
+        <img class="sidebar-logo" src="../../../assets/images/logo_klaten.png">
+      </span>
+    </div>
+    
   </div>
-</div>
 
 
 
-<mat-nav-list (sidenavToggle)="printEvent($event)">
-  <h3 mat-subheader>Tautan</h3>
-  <a mat-list-item (click)="toggleActive($event)" routerLink="/" >
-    <mat-icon> home </mat-icon>
-    <p mat-line> Halaman Depan</p>
-  </a>
-  <a mat-list-item (click)="toggleActive($event)" routerLink="/home">
-    <mat-icon> info </mat-icon>
-    <p mat-line> Informasi</p>
-  </a>
-  <a mat-list-item (click)="toggleActive($event)" routerLink="/home">
-    <mat-icon> get_app </mat-icon>
-    <p mat-line> Unduh Peraturan</p>
-  </a>
-  <a mat-list-item (click)="toggleActive($event)" routerLink="/home">
-    <mat-icon> record_voice_over </mat-icon>
-    <p mat-line> Pengaduan</p>
-  </a>
-  
+  <mat-nav-list (sidenavToggle)="printEvent($event)">
+    <h3 mat-subheader>Tautan</h3>
+    <a data-step="2" 
+    data-intro="Menu ini untuk kembali ke halaman depan" 
+    data-position='right' 
+    mat-list-item (click)="toggleActive($event)" routerLink="/">
+      <mat-icon> home </mat-icon>
+      <p mat-line> Halaman Depan</p>
+    </a>
+    <a data-step="3" 
+    data-intro="Menu ini untuk membuka halaman peta" 
+    data-position='right'
+    
+    mat-list-item (click)="toggleActive($event)" routerLink="/home">
+      <mat-icon> map </mat-icon>
+      <p mat-line> Peta</p>
+    </a>
+    <a data-step="4" 
+    data-intro="Gunakan untuk melihat peraturan zonasi tata ruang" 
+    data-position='right'
+    
+    mat-list-item (click)="toggleActive($event)" routerLink="/peraturan">
+      <mat-icon> menu_book </mat-icon>
+      <p mat-line> Peraturan Zonasi</p>
+    </a>
+    <a data-step="5" 
+    data-intro="Buat laporan untuk ditindak-lanjuti oleh Dinas PUPR Kabupaten Klaten" 
+    data-position='right'
+    mat-list-item (click)="toggleActive($event)" routerLink="/pengaduan">
+      <mat-icon> record_voice_over </mat-icon>
+      <p mat-line> Pengaduan</p>
+    </a>
+  </mat-nav-list>
+  <mat-nav-list *ngIf="(isLoggedIn | async)" (sidenavToggle)="printEvent($event)">
+      <h3 mat-subheader>Administrasi</h3>
+      <a mat-list-item (click)="toggleActive($event)" routerLink="/cekaduan">
+        <mat-icon> assignment </mat-icon>
+        <p mat-line> Lihat Pengaduan</p>
+      </a>
+    </mat-nav-list>
 
-</mat-nav-list>
-</ng-scrollbar>
-
+</perfect-scrollbar>
 
 
 
@@ -70,7 +86,7 @@
 
 
 
-  <!--
+<!--
 <mat-nav-list>
     <p mat-list-item fxFlex>
       <i>kerjasama:</i>

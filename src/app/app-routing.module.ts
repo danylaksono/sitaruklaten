@@ -1,3 +1,5 @@
+import { CekAduanComponent } from './cek-aduan/cek-aduan.component';
+
 
 
 import { NgModule } from '@angular/core';
@@ -8,8 +10,8 @@ import { MainViewComponent } from './main-view/main-view.component';
 import { LandingComponent } from './landing/landing.component';
 import { SignUpComponent } from './Auth/sign-up/sign-up.component';
 import { LoginComponent } from './Auth/login/login.component';
-import { HalamanCetakComponent } from './dialog/halaman-cetak/halaman-cetak.component';
-
+import { PeraturanComponent} from '../app/peraturan/peraturan.component';
+import { PengaduanComponent } from './pengaduan/pengaduan.component';
 
 
 const routes: Routes = [
@@ -21,8 +23,8 @@ const routes: Routes = [
     ] // put children route here { path: '', component: LoginComponent },
   },
   { 
-    path: 'print', 
-    component: HalamanCetakComponent
+    path: 'peraturan', 
+    component: PeraturanComponent
   },
   { 
     path: 'login', 
@@ -31,6 +33,14 @@ const routes: Routes = [
   { 
     path: 'signup', 
     component: SignUpComponent
+  },
+  {
+    path: 'pengaduan', 
+    component: PengaduanComponent
+  },
+  {  
+    path: 'cekaduan', 
+    component: CekAduanComponent
   },
   { path: '', component: LandingComponent}
   //{ path: '**', redirectTo: '' }

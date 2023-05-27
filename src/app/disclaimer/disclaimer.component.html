@@ -1,0 +1,42 @@
+<div fxLayout="column"  fxLayoutAlign="center center">
+  <div class="mat-typography" fxFlex>
+    <h2 class="header"> Ketentuan Penggunaan</h2>
+    <hr>
+    <p> Dengan menggunakan situs ini, pengguna setuju dengan Syarat dan Ketentuan yang berlaku:</p>
+    <ul>
+      <li>
+        Sitaru menyediakan data-data Rencana Tata Ruang di Wilayah Kabupaten Klaten sebagai bagian
+        dari keterbukaan informasi tata ruang, khususnya di wilayah Kabupaten Klaten
+      </li>
+      <li>
+        Data yang disajikan pada Sitaru merupakan data terbaru sesuai dengan ketentuan tata ruang yang berlaku.
+        Meskipun demikian, informasi pada Sitaru bukan merupakan rujukan utama untuk kegiatan penataan ruang tanpa
+        keputusan tertulis
+        dari Dinas Pekerjaan Umum dan Penataan Ruang Kabupaten Klaten
+      </li>
+      <li>
+        Kelengkapan data yang disajikan sesuai dengan produk hukum yang berlaku dan “sebagaimana adanya” (as is);
+      </li>
+      <li>
+        Dinas Pekerjaan Umum dan Penataan Ruang Kabupaten Klaten tidak bertanggungjawab atas segala kesalahan atau
+        kerugian yang timbul karena tindakan yang berkaitan dengan
+        penggunaan data/informasi yang disajikan pada situs ini;
+      </li>
+      <li>
+        Apabila terdapat perbedaan antara data pada informasi di Sitaru ini dengan informasi resmi, maka dikembalikan
+        kepada hukum yang berlaku
+      </li>
+    </ul>
+
+  </div>
+
+
+  <div class="mat-typography" fxFlexAlign="start" fxFlex>
+    <mat-slide-toggle [(ngModel)]="isSetuju">Saya setuju dengan ketentuan di atas</mat-slide-toggle>
+  </div>
+  <div fxFlexAlign="end" fxFlex>
+    <button mat-raised-button (click)="closeDialog()" [disabled]="!isSetuju" color="primary">LANJUTKAN</button>
+  </div>
+
+
+  <div>

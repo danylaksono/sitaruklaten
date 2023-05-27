@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material';
+import { SidenavService } from '../service/sidenav.service';
 
 @Component({
   selector: 'app-peraturan',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PeraturanComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav;  
+
+  constructor(
+    private sidenavService: SidenavService
+  ) { }
 
   ngOnInit() {
+    this.sidenavService.setSidenav(this.sidenav);
   }
 
 }

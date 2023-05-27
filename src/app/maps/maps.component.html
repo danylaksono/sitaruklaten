@@ -1,21 +1,26 @@
 <div #sitarumap id="map" class="map sidebar-map"></div>
 
-
-
 <div id="sidebar" class="sidebar collapsed">
   <!-- Nav tabs -->
-  <div class="sidebar-tabs">
-    <ul role="tablist">
-      <li><a matTooltip="Layer Peta" href="#home" role="tab"><i class="fa fa-map"></i></a></li>
-      <li><a matTooltip="Legenda" href="#profile" role="tab"><i class="fa fa-image"></i></a></li>
-      <li><a (click)="openDialogCari()" matTooltip="Cari Koordinat" role="tab"><i class="fa fa-flag"></i></a></li>
+  <div [perfectScrollbar]  class="sidebar-tabs">
+    <ul data-step="6" 
+    data-intro="Bagian ini untuk melakukan pengaturan layer peta, legenda, dan pencarian koordinat" 
+    data-position='auto'
+    role="tablist">
+      <li >
+        <a matTooltip="Layer Peta" href="#home" role="tab"><i class="fa fa-map"></i></a>
+      </li>
+      <li ><a matTooltip="Legenda" href="#profile" role="tab"><i class="fa fa-image"></i></a></li>
+      <li><a (click)="openDialogCari()" matTooltip="Cari Koordinat" role="tab"><i class="fa fa-map-marker"></i></a></li>
     </ul>
 
-    <ul role="tablist">
+    <ul data-step="7" 
+    data-intro="Menu ini untuk menampilkan mode yang sedang aktif. Mode edit hanya dapat digunakan oleh administrator" 
+    data-position='auto'
+    role="tablist">
         <li><a matTooltip="Hapus seleksi" (click)="clearSelected()" target="_blank"><i class="fa fa-eraser"></i></a></li>
         <li><a [style.background-color] = "editMode ? 'transparent' : 'lightblue'" (click)="activateInfoMode()" matTooltip="Mode Info" role="tab"><i class="fa fa-info-circle"></i></a></li>
-        <li><a [style.background-color] = "editMode ? 'lightblue' : 'transparent'" (click)="activateEditMode()"  matTooltip="Mode Edit" role="tab"><i class="fa fa-pencil"></i></a></li>
-        
+        <li *ngIf="(isLoggedIn | async)"><a [style.background-color] = "editMode ? 'lightblue' : 'transparent'" (click)="activateEditMode()"  matTooltip="Mode Edit" role="tab"><i class="fa fa-pencil"></i></a></li>
     </ul>
   </div>
 
@@ -39,7 +44,7 @@
         <span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
       </h1>
       <div style="padding-top:10px">
-        <ng-scrollbar #scrollable track="vertical" visibility="hover">
+        
           <mat-accordion>
             <mat-expansion-panel >
               <mat-expansion-panel-header>
@@ -51,6 +56,17 @@
               <div>
                 <img
                   src="http://103.108.187.217/geoserver/sitaru/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=sitaru:pola_ruang">
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Pola Ruang Perpres
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div>
+                <img
+                  src="http://103.108.187.217/geoserver/sitaru/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=sitaru:pola_ruang_perpres">
               </div>
             </mat-expansion-panel>
             <mat-expansion-panel >
@@ -155,7 +171,7 @@
               </div>
             </mat-expansion-panel>
           </mat-accordion>
-        </ng-scrollbar>
+        
       </div>
     </div>
 
@@ -165,8 +181,8 @@
 
   </div>
 
-  <div id="location-marker" class="marker">
-      <img src="https://petakita.big.go.id/images/blueflag.png">
+  <div [hidden]="!showMarker" id="location-marker" class="marker">
+      <img src="../../assets/images/flag.png">
       <span class="pulse"></span>
   </div>
 

@@ -9,7 +9,7 @@ import OlGeoJSON from 'ol/format/GeoJSON';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { WarningSnackbarService } from './../dialog/warning-snackbar.service';
 import { Overlay } from 'ol';
-import { MainqueryService } from './mainquery.service';
+//import { MainqueryService } from './mainquery.service';
 
 
 @Injectable({
@@ -21,11 +21,12 @@ export class HighlightfeatureService {
   popup: any;
   VectorLayer: OlVectorLayer;
   overlay: Overlay;
+  dialogRef;
   
 
   constructor(
     private warning: WarningSnackbarService,
-    private query: MainqueryService,
+    //private query: MainqueryService,
     public dialog: MatDialog
   ) { }
 
@@ -102,6 +103,8 @@ export class HighlightfeatureService {
     var style = new Style({
       fill: new Fill({
         color: 'yellow'
+        
+
       }),
       stroke: new Stroke({
         color: 'red',
@@ -111,9 +114,10 @@ export class HighlightfeatureService {
     this.VectorLayer = new OlVectorLayer({
       source: vectorSource,
       style: style,
+      opacity: 0.7,
       renderMode: 'image',
       //@ts-ignore
-      title: 'Bidang Tanah Terpilih',
+      title: 'Zona Terpilih',
       name: 'Selected'
       //map: this.map
     });
@@ -129,7 +133,7 @@ export class HighlightfeatureService {
       disableClose : false,
       autoFocus : true,
       //height : '350px',
-      //width : '400px',
+      width : '30vw',
       hasBackdrop: false      
     }
     dialogConfig.data = {
@@ -140,9 +144,9 @@ export class HighlightfeatureService {
       //article: 'Keluar dari Mode Administator?'
 
     };
-    const dialogRef = this.dialog.open(LayerattributeComponent, dialogConfig);
+    this.dialogRef = this.dialog.open(LayerattributeComponent, dialogConfig);
     //dialogRef.closeAll();
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialogRef.afterClosed().subscribe(result => {
       if (result === 'A') {
         // handle A button close
         //console.log('A');

@@ -1,7 +1,7 @@
 <mat-toolbar style="max-height:50px" color="primary">
-  <span>
-    <button mat-icon-button (click)="onClicked()">
-      <mat-icon>menu</mat-icon>
+  <span  >
+    <button  mat-icon-button (click)="toggleSidenav()">
+      <mat-icon data-step="1" data-intro="Klik ini untuk membuka menu utama" data-position='auto'>menu</mat-icon>
     </button>
   </span>
   <span>
@@ -11,10 +11,54 @@
   </span>
   <span class="example-spacer"></span>
 
-  <button  matTooltip="Halaman Depan"
+
+  <button  matTooltip="Disclaimer"
+   mat-icon-button (click)="disclaimer()">
+    <mat-icon  class="unlogged-icon" aria-hidden="false" aria-label="user verified icon">policy
+    </mat-icon>
+  </button>
+
+  <button 
+  data-step="8" 
+    data-intro="Klik pada tombol ini untuk menampilkan bantuan Interaktif" 
+    data-position='auto'
+  matTooltip="Bantuan Interaktif"
+   mat-icon-button >
+    <mat-icon  class="unlogged-icon" (click)="showHelp()" aria-hidden="false" aria-label="user verified icon">help
+    </mat-icon>
+  </button>
+
+  <!--button  matTooltip="Halaman Depan"
    mat-icon-button routerLink="/" aria-label="sitaru admin">
     <mat-icon  class="unlogged-icon" aria-hidden="false" aria-label="user verified icon">home
     </mat-icon>
+  </!--button-->
+
+  <button  matTooltip="Masuk sebagai admin"
+  *ngIf="!(isLoggedIn | async)" mat-icon-button routerLink="/login" aria-label="sitaru admin">
+    <mat-icon  class="unlogged-icon" aria-hidden="false" aria-label="user verified icon">person
+    </mat-icon>
   </button>
+
+  <button  matTooltip="Administrator Sitaru"
+  *ngIf="(isLoggedIn | async)" mat-icon-button [matMenuTriggerFor]="menu" aria-label="sitaru admin">
+    <mat-icon  class="logged-icon" aria-hidden="false" aria-label="user verified icon">verified_user
+    </mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <!--
+      <button routerLink="/signup" mat-menu-item>
+      <mat-icon>build</mat-icon>
+      <span>Pengaturan</span>
+    </button>
+    -->
+    
+    <button (click) = "openModal()" mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Log Out</span>
+    </button>
+  </mat-menu>
+
+  
 
 </mat-toolbar>
